@@ -108,9 +108,7 @@ class VulkanRenderer : Renderer {
 
         val frameState = swapChain.acquireNextTexture()
         val commandBuffer = frameState.commandBuffer
-        commandBuffer.begin {
-            flags = VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT
-        }
+        commandBuffer.begin(usageFlags = VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT)
         commandBuffer.transitionImageLayout(
             texture = frameState.texture,
             oldLayout = frameState.texture.layout,
