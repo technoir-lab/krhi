@@ -1,5 +1,5 @@
 [versions]
-kotlin-logging = "7.0.13"
+kotlin-logging = "7.0.14"
 kotlin-math = "1.7.0"
 kotlinx-browser = "0.5.0"
 kotlinx-io = "0.8.2"
