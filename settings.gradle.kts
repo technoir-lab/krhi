@@ -33,7 +33,7 @@ globalSettings {
     metadata {
         description = "Render Hardware Interface for Kotlin Multiplatform."
         developer(name = "technoir", email = "technoir.dev@gmail.com")
-        license(name = "The Apache Software License, Version 2.0", url = "http://www.apache.org/licenses/LICENSE-2.0.txt")
+        license(name = "The Apache Software License, Version 2.0", url = "https://www.apache.org/licenses/LICENSE-2.0.txt")
     }
 }
 
