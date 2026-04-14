@@ -1,11 +1,11 @@
-name: Deploy
+name: Release
 
 on:
   push:
     tags: [ "*" ]
 
 concurrency:
-  group: ${{ github.workflow }}
+  group: ${{ github.workflow_ref }}
 
 jobs:
   packages:
