@@ -43,7 +43,7 @@ internal class VulkanSwapChain(
     private val physicalDevice: VulkanPhysicalDevice,
     private val surface: Surface,
     private val window: WindowHandle,
-    private val spec: VulkanSwapChainSpec
+    private val spec: VulkanSwapChainSpec,
 ) : RenderTarget {
 
     private val logger = KotlinLogging.logger("VulkanRenderer")
@@ -73,7 +73,7 @@ internal class VulkanSwapChain(
                     commandPool = device.graphicsCommandPool,
                     commandBuffer = device.graphicsCommandPool.allocateCommandBuffers(1).single(),
                     acquireSemaphore = device.device.createSemaphore(),
-                    submitFence = device.device.createFence { flags = VK_FENCE_CREATE_SIGNALED_BIT }
+                    submitFence = device.device.createFence { flags = VK_FENCE_CREATE_SIGNALED_BIT },
                 )
             }
         }
@@ -129,7 +129,7 @@ internal class VulkanSwapChain(
             acquireSemaphore = acquireSemaphore,
             submitSemaphore = textureState.submitSemaphore,
             submitFence = frameFence,
-            recreate = recreate
+            recreate = recreate,
         )
     }
 
@@ -165,7 +165,7 @@ internal class VulkanSwapChain(
         val result = device.presentQueue.present(
             swapChain = swapChain,
             imageIndex = frameState.textureIndex,
-            waitSemaphores = listOf(frameState.submitSemaphore)
+            waitSemaphores = listOf(frameState.submitSemaphore),
         )
         if (result == VK_ERROR_OUT_OF_DATE_KHR) {
             logger.info { "Swap chain is out of date, recreating immediately" }
@@ -199,12 +199,7 @@ internal class VulkanSwapChain(
     }
 
     context(memScope: MemScope)
-    private fun createSwapChain(
-        surface: Surface,
-        spec: VulkanSwapChainSpec,
-        extent: Extent2D,
-        oldSwapchain: Swapchain? = null
-    ): Swapchain {
+    private fun createSwapChain(surface: Surface, spec: VulkanSwapChainSpec, extent: Extent2D, oldSwapchain: Swapchain? = null): Swapchain {
         val queueFamilyIndices = listOf(device.graphicsQueue.familyIndex, device.presentQueue.familyIndex).distinct()
         return device.device.createSwapchain {
             minImageCount = spec.textureCount
@@ -237,7 +232,7 @@ internal class VulkanSwapChain(
                 sampleCount = VK_SAMPLE_COUNT_1_BIT,
                 image = image,
                 imageView = imageView,
-                aspectMask = aspectMask
+                aspectMask = aspectMask,
             )
             VulkanTextureState(texture, submitSemaphore = device.createSemaphore())
         }
@@ -249,7 +244,7 @@ internal class VulkanSwapChain(
             val windowExtent = window.extent
             Extent2D(
                 width = windowExtent.width.coerceIn(surfaceCapabilities.minImageExtent.width, surfaceCapabilities.maxImageExtent.width),
-                height = windowExtent.height.coerceIn(surfaceCapabilities.minImageExtent.height, surfaceCapabilities.maxImageExtent.height)
+                height = windowExtent.height.coerceIn(surfaceCapabilities.minImageExtent.height, surfaceCapabilities.maxImageExtent.height),
             )
         }
 
@@ -257,7 +252,7 @@ internal class VulkanSwapChain(
 
     private class VulkanTextureState(
         val texture: VulkanTexture,
-        val submitSemaphore: Semaphore
+        val submitSemaphore: Semaphore,
     ) : AutoCloseable {
 
         override fun close() {
@@ -270,7 +265,7 @@ internal class VulkanSwapChain(
         private val commandPool: CommandPool,
         val commandBuffer: CommandBuffer,
         val acquireSemaphore: Semaphore,
-        val submitFence: Fence
+        val submitFence: Fence,
     ) : AutoCloseable {
 
         override fun close() {

@@ -2,13 +2,13 @@ package io.technoirlab.rhi.core.geometry
 
 data class VertexAttribute(
     val type: Type,
-    val offset: UInt
+    val offset: UInt,
 ) {
     enum class Type {
         Float,
         Float2,
         Float3,
-        Float4
+        Float4,
     }
 }
 

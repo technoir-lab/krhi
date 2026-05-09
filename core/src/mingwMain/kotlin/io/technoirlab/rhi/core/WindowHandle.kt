@@ -10,7 +10,7 @@ import platform.windows.RECT
 
 actual class WindowHandle(
     val nativeHandle: HWND,
-    val moduleHandle: HINSTANCE
+    val moduleHandle: HINSTANCE,
 ) {
     actual val extent: Extent2D
         get() = memScoped {
@@ -18,7 +18,7 @@ actual class WindowHandle(
             GetClientRect(nativeHandle, rect.ptr)
             Extent2D(
                 width = (rect.right - rect.left).toUInt(),
-                height = (rect.bottom - rect.top).toUInt()
+                height = (rect.bottom - rect.top).toUInt(),
             )
         }
 }

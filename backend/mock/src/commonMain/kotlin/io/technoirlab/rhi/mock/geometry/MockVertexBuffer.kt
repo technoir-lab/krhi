@@ -7,5 +7,6 @@ import io.technoirlab.rhi.mock.MockBuffer
 internal class MockVertexBuffer(
     size: ULong,
     override val vertexCount: UInt,
-    override val vertexLayout: VertexLayout
-) : MockBuffer(size), VertexBuffer
+    override val vertexLayout: VertexLayout,
+) : MockBuffer(size),
+    VertexBuffer

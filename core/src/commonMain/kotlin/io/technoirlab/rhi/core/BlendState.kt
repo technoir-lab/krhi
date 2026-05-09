@@ -7,7 +7,7 @@ data class BlendState(
     /**
      * Defines the blending behavior for the corresponding color target.
      */
-    val colorTargets: List<ColorTargetBlendState> = listOf(ColorTargetBlendState())
+    val colorTargets: List<ColorTargetBlendState> = listOf(ColorTargetBlendState()),
 )
 
 /**
@@ -30,7 +30,7 @@ data class ColorTargetBlendState(
     /**
      * Defines which channels are written to when drawing to this color target.
      */
-    val colorWriteMask: UInt = ColorMask.ALL
+    val colorWriteMask: UInt = ColorMask.ALL,
 )
 
 /**
@@ -48,7 +48,7 @@ data class BlendComponent(
     /**
      * Defines the operation to be performed on values from the target attachment.
      */
-    val dstFactor: BlendFactor = BlendFactor.Zero
+    val dstFactor: BlendFactor = BlendFactor.Zero,
 )
 
 /**
@@ -138,7 +138,7 @@ enum class BlendFactor {
     /**
      * (1 - src1.a, 1 - src1.a, 1 - src1.a, 1 - src.a)
      */
-    OneMinusSrc1Alpha
+    OneMinusSrc1Alpha,
 }
 
 /**
@@ -168,7 +168,7 @@ enum class BlendOp {
     /**
      * max(src, dst)
      */
-    Max
+    Max,
 }
 
 /**

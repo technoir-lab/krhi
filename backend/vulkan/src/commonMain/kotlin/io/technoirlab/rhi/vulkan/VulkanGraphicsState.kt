@@ -23,7 +23,7 @@ internal class VulkanGraphicsState(
     override val rasterState: RasterState,
     override val blendState: BlendState,
     override val depthStencilState: DepthStencilState,
-    override var pushConstants: ByteArray? = null
+    override var pushConstants: ByteArray? = null,
 ) : GraphicsState {
 
     override fun close() {

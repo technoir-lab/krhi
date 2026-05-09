@@ -7,7 +7,7 @@ import io.technoirlab.vulkan.ShaderModule
 internal class VulkanShader(
     override val type: ShaderType,
     override val entryPoint: String,
-    val shader: ShaderModule
+    val shader: ShaderModule,
 ) : Shader {
 
     override fun close() {

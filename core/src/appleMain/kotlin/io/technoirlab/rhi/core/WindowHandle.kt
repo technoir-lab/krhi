@@ -8,7 +8,7 @@ actual class WindowHandle(val layer: CAMetalLayer) {
         get() = layer.frame.useContents {
             Extent2D(
                 width = size.width.toUInt(),
-                height = size.height.toUInt()
+                height = size.height.toUInt(),
             )
         }
 }

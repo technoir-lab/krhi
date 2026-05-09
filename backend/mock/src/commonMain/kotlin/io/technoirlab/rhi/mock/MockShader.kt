@@ -5,7 +5,7 @@ import io.technoirlab.rhi.core.ShaderType
 
 internal class MockShader(
     override val type: ShaderType,
-    override val entryPoint: String
+    override val entryPoint: String,
 ) : Shader {
     override fun close() = Unit
 }

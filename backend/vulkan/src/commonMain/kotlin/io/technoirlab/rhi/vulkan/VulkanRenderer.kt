@@ -73,137 +73,142 @@ class VulkanRenderer : Renderer {
             }
             val instanceLayers = supportedLayers.filter(
                 requiredLayers = REQUIRED_LAYERS,
-                optionalLayers = OPTIONAL_LAYERS
+                optionalLayers = OPTIONAL_LAYERS,
             )
             val instanceExtensions = supportedExtensions.filter(
                 requiredExtensions = REQUIRED_INSTANCE_EXTENSIONS,
-                optionalExtensions = OPTIONAL_INSTANCE_EXTENSIONS
+                optionalExtensions = OPTIONAL_INSTANCE_EXTENSIONS,
             )
             VulkanInstance(vulkan, apiVersion, instanceLayers, instanceExtensions)
         }
     }
 
-    override fun createDevice(window: WindowHandle, config: RendererConfig): Device = memScoped {
-        logger.info { "Creating surface" }
-        val surface = instance.createSurface(window).also { surface = it }
+    override fun createDevice(window: WindowHandle, config: RendererConfig): Device =
+        memScoped {
+            logger.info { "Creating surface" }
+            val surface = instance.createSurface(window).also { surface = it }
 
-        val (physicalDevice, deviceSpec) = selectPhysicalDevice(instance, surface, minApiVersion, config.deviceName)
+            val (physicalDevice, deviceSpec) = selectPhysicalDevice(instance, surface, minApiVersion, config.deviceName)
 
-        val supportedDeviceExtensions = physicalDevice.getSupportedExtensions()
-        if (supportedDeviceExtensions.isNotEmpty()) {
-            logger.info { "Supported device extensions: [${supportedDeviceExtensions.joinToString()}]" }
+            val supportedDeviceExtensions = physicalDevice.getSupportedExtensions()
+            if (supportedDeviceExtensions.isNotEmpty()) {
+                logger.info { "Supported device extensions: [${supportedDeviceExtensions.joinToString()}]" }
+            }
+            val deviceExtensions = supportedDeviceExtensions.filter(
+                requiredExtensions = REQUIRED_DEVICE_EXTENSIONS,
+                optionalExtensions = OPTIONAL_DEVICE_EXTENSIONS,
+            )
+            val device = physicalDevice.createDevice(deviceSpec, deviceExtensions).also { device = it }
+
+            swapChain = device.createSwapChain(surface, window, config)
+            return device
         }
-        val deviceExtensions = supportedDeviceExtensions.filter(
-            requiredExtensions = REQUIRED_DEVICE_EXTENSIONS,
-            optionalExtensions = OPTIONAL_DEVICE_EXTENSIONS
-        )
-        val device = physicalDevice.createDevice(deviceSpec, deviceExtensions).also { device = it }
 
-        swapChain = device.createSwapChain(surface, window, config)
-        return device
-    }
+    override fun prepare(): FrameState =
+        memScoped {
+            val swapChain = checkNotNull(swapChain)
 
-    override fun prepare(): FrameState = memScoped {
-        val swapChain = checkNotNull(swapChain)
-
-        val frameState = swapChain.acquireNextTexture()
-        val commandBuffer = frameState.commandBuffer
-        commandBuffer.begin(usageFlags = VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT)
-        commandBuffer.transitionImageLayout(
-            texture = frameState.texture,
-            oldLayout = frameState.texture.layout,
-            newLayout = VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL,
-            srcAccessMask = VK_ACCESS_2_NONE,
-            dstAccessMask = VK_ACCESS_2_COLOR_ATTACHMENT_WRITE_BIT,
-            srcStage = VK_PIPELINE_STAGE_2_TOP_OF_PIPE_BIT,
-            dstStage = VK_PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT_BIT
-        )
-        frameState.depthStencil?.let { depthStencil ->
+            val frameState = swapChain.acquireNextTexture()
+            val commandBuffer = frameState.commandBuffer
+            commandBuffer.begin(usageFlags = VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT)
             commandBuffer.transitionImageLayout(
-                texture = depthStencil,
-                oldLayout = depthStencil.layout,
-                newLayout = VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL,
+                texture = frameState.texture,
+                oldLayout = frameState.texture.layout,
+                newLayout = VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL,
                 srcAccessMask = VK_ACCESS_2_NONE,
-                dstAccessMask = VK_ACCESS_2_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT,
+                dstAccessMask = VK_ACCESS_2_COLOR_ATTACHMENT_WRITE_BIT,
                 srcStage = VK_PIPELINE_STAGE_2_TOP_OF_PIPE_BIT,
-                dstStage = VK_PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS_BIT
+                dstStage = VK_PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT_BIT,
             )
+            frameState.depthStencil?.let { depthStencil ->
+                commandBuffer.transitionImageLayout(
+                    texture = depthStencil,
+                    oldLayout = depthStencil.layout,
+                    newLayout = VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL,
+                    srcAccessMask = VK_ACCESS_2_NONE,
+                    dstAccessMask = VK_ACCESS_2_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT,
+                    srcStage = VK_PIPELINE_STAGE_2_TOP_OF_PIPE_BIT,
+                    dstStage = VK_PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS_BIT,
+                )
+            }
+            commandBuffer.beginRendering(swapChain)
+            return frameState
         }
-        commandBuffer.beginRendering(swapChain)
-        return frameState
-    }
 
-    override fun present(frameState: FrameState) = memScoped {
-        require(frameState is VulkanFrameState)
-        val swapChain = checkNotNull(swapChain)
+    override fun present(frameState: FrameState) =
+        memScoped {
+            require(frameState is VulkanFrameState)
+            val swapChain = checkNotNull(swapChain)
 
-        val commandBuffer = frameState.commandBuffer
-        commandBuffer.endRendering()
-        commandBuffer.transitionImageLayout(
-            texture = frameState.texture,
-            oldLayout = VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL,
-            newLayout = VK_IMAGE_LAYOUT_PRESENT_SRC_KHR,
-            srcAccessMask = VK_ACCESS_2_COLOR_ATTACHMENT_WRITE_BIT,
-            dstAccessMask = VK_ACCESS_2_NONE,
-            srcStage = VK_PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT_BIT,
-            dstStage = VK_PIPELINE_STAGE_2_BOTTOM_OF_PIPE_BIT
-        )
-        frameState.depthStencil?.let { depthStencil ->
+            val commandBuffer = frameState.commandBuffer
+            commandBuffer.endRendering()
             commandBuffer.transitionImageLayout(
-                texture = depthStencil,
-                oldLayout = VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL,
-                newLayout = VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL,
-                srcAccessMask = VK_ACCESS_2_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT,
+                texture = frameState.texture,
+                oldLayout = VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL,
+                newLayout = VK_IMAGE_LAYOUT_PRESENT_SRC_KHR,
+                srcAccessMask = VK_ACCESS_2_COLOR_ATTACHMENT_WRITE_BIT,
                 dstAccessMask = VK_ACCESS_2_NONE,
-                srcStage = VK_PIPELINE_STAGE_2_LATE_FRAGMENT_TESTS_BIT,
-                dstStage = VK_PIPELINE_STAGE_2_BOTTOM_OF_PIPE_BIT
+                srcStage = VK_PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT_BIT,
+                dstStage = VK_PIPELINE_STAGE_2_BOTTOM_OF_PIPE_BIT,
             )
-        }
-        commandBuffer.end()
+            frameState.depthStencil?.let { depthStencil ->
+                commandBuffer.transitionImageLayout(
+                    texture = depthStencil,
+                    oldLayout = VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL,
+                    newLayout = VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL,
+                    srcAccessMask = VK_ACCESS_2_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT,
+                    dstAccessMask = VK_ACCESS_2_NONE,
+                    srcStage = VK_PIPELINE_STAGE_2_LATE_FRAGMENT_TESTS_BIT,
+                    dstStage = VK_PIPELINE_STAGE_2_BOTTOM_OF_PIPE_BIT,
+                )
+            }
+            commandBuffer.end()
 
-        swapChain.submit(frameState)
-        swapChain.present(frameState)
-    }
-
-    override fun render(frameState: FrameState, graphicsState: GraphicsState) = memScoped {
-        require(frameState is VulkanFrameState)
-        require(graphicsState is VulkanGraphicsState)
-        require(graphicsState.vertexBuffer is VulkanVertexBuffer)
-        require(graphicsState.indexBuffer is VulkanIndexBuffer)
-
-        val commandBuffer = frameState.commandBuffer
-
-        commandBuffer.bindPipeline(VK_PIPELINE_BIND_POINT_GRAPHICS, graphicsState.pipeline)
-        commandBuffer.setPrimitiveTopology(graphicsState.primitiveType.toVkPrimitiveTopology())
-        commandBuffer.setViewportWithCount(count = 1u) {
-            x = 0.0f
-            y = 0.0f
-            minDepth = 0.0f
-            maxDepth = 1.0f
-            width = frameState.texture.extent.width.toFloat()
-            height = frameState.texture.extent.height.toFloat()
-        }
-        commandBuffer.setScissorWithCount(count = 1u) {
-            offset.x = 0
-            offset.y = 0
-            extent.width = frameState.texture.extent.width
-            extent.height = frameState.texture.extent.height
-        }
-        commandBuffer.setCullMode(graphicsState.rasterState.cullMode.toVkCullMode())
-        commandBuffer.setFrontFace(graphicsState.rasterState.frontFace.toVkFrontFace())
-
-        graphicsState.pushConstants?.let { pushConstants ->
-            commandBuffer.pushConstants(graphicsState.pipelineLayout, VK_SHADER_STAGE_VERTEX_BIT, pushConstants)
+            swapChain.submit(frameState)
+            swapChain.present(frameState)
         }
 
-        commandBuffer.bindVertexBuffer(graphicsState.vertexBuffer.buffer)
-        commandBuffer.bindIndexBuffer(graphicsState.indexBuffer.buffer, graphicsState.indexBuffer.indexType.toVkIndexType())
-        commandBuffer.drawIndexed(graphicsState.indexBuffer.indexCount)
-    }
+    override fun render(frameState: FrameState, graphicsState: GraphicsState) =
+        memScoped {
+            require(frameState is VulkanFrameState)
+            require(graphicsState is VulkanGraphicsState)
+            require(graphicsState.vertexBuffer is VulkanVertexBuffer)
+            require(graphicsState.indexBuffer is VulkanIndexBuffer)
 
-    override fun reset(): Unit = memScoped {
-        swapChain?.reset()
-    }
+            val commandBuffer = frameState.commandBuffer
+
+            commandBuffer.bindPipeline(VK_PIPELINE_BIND_POINT_GRAPHICS, graphicsState.pipeline)
+            commandBuffer.setPrimitiveTopology(graphicsState.primitiveType.toVkPrimitiveTopology())
+            commandBuffer.setViewportWithCount(count = 1u) {
+                x = 0.0f
+                y = 0.0f
+                minDepth = 0.0f
+                maxDepth = 1.0f
+                width = frameState.texture.extent.width.toFloat()
+                height = frameState.texture.extent.height.toFloat()
+            }
+            commandBuffer.setScissorWithCount(count = 1u) {
+                offset.x = 0
+                offset.y = 0
+                extent.width = frameState.texture.extent.width
+                extent.height = frameState.texture.extent.height
+            }
+            commandBuffer.setCullMode(graphicsState.rasterState.cullMode.toVkCullMode())
+            commandBuffer.setFrontFace(graphicsState.rasterState.frontFace.toVkFrontFace())
+
+            graphicsState.pushConstants?.let { pushConstants ->
+                commandBuffer.pushConstants(graphicsState.pipelineLayout, VK_SHADER_STAGE_VERTEX_BIT, pushConstants)
+            }
+
+            commandBuffer.bindVertexBuffer(graphicsState.vertexBuffer.buffer)
+            commandBuffer.bindIndexBuffer(graphicsState.indexBuffer.buffer, graphicsState.indexBuffer.indexType.toVkIndexType())
+            commandBuffer.drawIndexed(graphicsState.indexBuffer.indexCount)
+        }
+
+    override fun reset(): Unit =
+        memScoped {
+            swapChain?.reset()
+        }
 
     override fun close() {
         device?.graphicsQueue?.waitIdle()
@@ -223,7 +228,7 @@ class VulkanRenderer : Renderer {
         instance: VulkanInstance,
         surface: Surface,
         minApiVersion: UInt,
-        deviceName: String?
+        deviceName: String?,
     ): Pair<VulkanPhysicalDevice, VulkanDeviceSpec> {
         val availableDevices = instance.getPhysicalDevices()
         check(availableDevices.isNotEmpty()) { "No devices found" }
@@ -306,8 +311,8 @@ class VulkanRenderer : Renderer {
         }
     }
 
-    context(memScope: MemScope)
     @Suppress("LongParameterList")
+    context(memScope: MemScope)
     private fun CommandBuffer.transitionImageLayout(
         texture: VulkanTexture,
         oldLayout: VkImageLayout,
@@ -315,7 +320,7 @@ class VulkanRenderer : Renderer {
         srcAccessMask: VkAccessFlags2,
         dstAccessMask: VkAccessFlags2,
         srcStage: VkPipelineStageFlags2,
-        dstStage: VkPipelineStageFlags2
+        dstStage: VkPipelineStageFlags2,
     ) = imageMemoryBarrier {
         check(texture.layout == oldLayout) { "Expected texture layout to be $oldLayout but was ${texture.layout}" }
         texture.layout = newLayout

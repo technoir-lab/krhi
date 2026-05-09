@@ -40,7 +40,7 @@ data class DepthStencilState(
     /**
      * Defines how stencil comparisons and operations are performed for back-facing primitives.
      */
-    val stencilBack: StencilOpState = StencilOpState()
+    val stencilBack: StencilOpState = StencilOpState(),
 )
 
 /**
@@ -62,7 +62,7 @@ data class StencilOpState(
     /**
      * The [ComparisonFunc] used when testing the [DepthStencilState.stencilRefValue] value against the fragment’s depth-stencil attachment stencil values.
      */
-    val stencilFunc: ComparisonFunc = ComparisonFunc.Always
+    val stencilFunc: ComparisonFunc = ComparisonFunc.Always,
 )
 
 /**
@@ -107,7 +107,7 @@ enum class StencilOp {
     /**
      * Decrement the current stencil value, wrapping to the maximum representable value of the depth-stencil attachment’s stencil aspect if the value goes below 0.
      */
-    DecrementAndWrap
+    DecrementAndWrap,
 }
 
 /**
@@ -152,5 +152,5 @@ enum class ComparisonFunc {
     /**
      * Comparison tests always pass.
      */
-    Always
+    Always,
 }

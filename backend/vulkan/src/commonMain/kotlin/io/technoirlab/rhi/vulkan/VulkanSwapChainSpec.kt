@@ -16,8 +16,8 @@ internal data class VulkanSwapChainSpec(
     val depthStencilFormat: Format?,
     @Suppress("MagicNumber")
     val clearValues: ClearValues = ClearValues(
-        color = listOf(Float4(0.392f, 0.584f, 0.929f, 1.0f))
-    )
+        color = listOf(Float4(0.392f, 0.584f, 0.929f, 1.0f)),
+    ),
 ) {
     override fun toString(): String =
         "VulkanSwapChainSpec(textureCount=$textureCount, format=$format, " +

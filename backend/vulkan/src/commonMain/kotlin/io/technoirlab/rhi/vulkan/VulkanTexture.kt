@@ -24,7 +24,7 @@ internal class VulkanTexture(
     val imageView: ImageView,
     val aspectMask: VkImageAspectFlags,
     var layout: VkImageLayout = VK_IMAGE_LAYOUT_UNDEFINED,
-    private val memory: DeviceMemory? = null
+    private val memory: DeviceMemory? = null,
 ) : Texture {
 
     override fun close() {
