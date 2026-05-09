@@ -19,7 +19,7 @@ internal class MockGraphicsState(
     override val rasterState: RasterState,
     override val blendState: BlendState,
     override val depthStencilState: DepthStencilState,
-    override var pushConstants: ByteArray?
+    override var pushConstants: ByteArray?,
 ) : GraphicsState {
     override fun close() = Unit
 }

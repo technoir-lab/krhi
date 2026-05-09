@@ -22,25 +22,15 @@ import io.technoirlab.rhi.mock.geometry.MockVertexBuffer
 import kotlinx.io.Source
 
 class MockDevice : Device {
-    override fun createDepthStencilBuffer(
-        extent: Extent2D,
-        format: Format
-    ): Texture = MockTexture(extent, format, sampleCount = 1u)
+    override fun createDepthStencilBuffer(extent: Extent2D, format: Format): Texture = MockTexture(extent, format, sampleCount = 1u)
 
-    override fun createVertexBuffer(
-        source: Source,
-        vertexCount: UInt,
-        vertexLayout: VertexLayout
-    ): VertexBuffer = MockVertexBuffer(vertexCount.toULong() * vertexLayout.vertexSize, vertexCount, vertexLayout)
+    override fun createVertexBuffer(source: Source, vertexCount: UInt, vertexLayout: VertexLayout): VertexBuffer =
+        MockVertexBuffer(vertexCount.toULong() * vertexLayout.vertexSize, vertexCount, vertexLayout)
 
-    override fun createIndexBuffer(
-        source: Source,
-        indexCount: UInt,
-        indexType: IndexType
-    ): IndexBuffer = MockIndexBuffer(indexCount.toULong() * indexType.sizeInBytes, indexCount, indexType)
+    override fun createIndexBuffer(source: Source, indexCount: UInt, indexType: IndexType): IndexBuffer =
+        MockIndexBuffer(indexCount.toULong() * indexType.sizeInBytes, indexCount, indexType)
 
-    override fun createShader(type: ShaderType, source: Source, entryPoint: String): Shader =
-        MockShader(type, entryPoint)
+    override fun createShader(type: ShaderType, source: Source, entryPoint: String): Shader = MockShader(type, entryPoint)
 
     override fun createGraphicsState(
         renderTarget: RenderTarget,
@@ -52,18 +42,19 @@ class MockDevice : Device {
         rasterState: RasterState,
         blendState: BlendState,
         depthStencilState: DepthStencilState,
-        pushConstants: ByteArray?
-    ): GraphicsState = MockGraphicsState(
-        vertexBuffer = vertexBuffer,
-        indexBuffer = indexBuffer,
-        primitiveType = primitiveType,
-        vertexShader = vertexShader,
-        fragmentShader = fragmentShader,
-        rasterState = rasterState,
-        blendState = blendState,
-        depthStencilState = depthStencilState,
-        pushConstants = pushConstants
-    )
+        pushConstants: ByteArray?,
+    ): GraphicsState =
+        MockGraphicsState(
+            vertexBuffer = vertexBuffer,
+            indexBuffer = indexBuffer,
+            primitiveType = primitiveType,
+            vertexShader = vertexShader,
+            fragmentShader = fragmentShader,
+            rasterState = rasterState,
+            blendState = blendState,
+            depthStencilState = depthStencilState,
+            pushConstants = pushConstants,
+        )
 
     override fun close() = Unit
 }

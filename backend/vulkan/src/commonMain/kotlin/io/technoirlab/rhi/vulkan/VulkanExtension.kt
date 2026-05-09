@@ -10,7 +10,7 @@ internal value class VulkanExtension(val name: String) : Comparable<VulkanExtens
 
 internal fun Collection<VulkanExtension>.filter(
     requiredExtensions: Set<VulkanExtension> = emptySet(),
-    optionalExtensions: Set<VulkanExtension> = emptySet()
+    optionalExtensions: Set<VulkanExtension> = emptySet(),
 ): Set<VulkanExtension> {
     val missingExtensions = requiredExtensions.minus(this)
     check(missingExtensions.isEmpty()) {
@@ -21,7 +21,7 @@ internal fun Collection<VulkanExtension>.filter(
 
 internal expect val REQUIRED_INSTANCE_EXTENSIONS: Set<VulkanExtension>
 internal val OPTIONAL_INSTANCE_EXTENSIONS: Set<VulkanExtension> = setOf(
-    VulkanExtension(VK_EXT_DEBUG_UTILS_EXTENSION_NAME)
+    VulkanExtension(VK_EXT_DEBUG_UTILS_EXTENSION_NAME),
 )
 internal expect val REQUIRED_DEVICE_EXTENSIONS: Set<VulkanExtension>
 internal val OPTIONAL_DEVICE_EXTENSIONS: Set<VulkanExtension> = emptySet()

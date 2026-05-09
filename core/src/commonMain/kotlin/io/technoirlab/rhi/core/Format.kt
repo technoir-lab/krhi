@@ -15,7 +15,7 @@ enum class Format {
     D24,
     D24_S8,
     D32,
-    D32_S8
+    D32_S8,
 }
 
 inline val Format.hasDepthComponent: Boolean
@@ -25,7 +25,9 @@ inline val Format.hasDepthComponent: Boolean
         D24,
         D24_S8,
         D32,
-        D32_S8 -> true
+        D32_S8,
+        -> true
+
         else -> false
     }
 
@@ -33,6 +35,8 @@ inline val Format.hasStencilComponent: Boolean
     get() = when (this) {
         D16_S8,
         D24_S8,
-        D32_S8 -> true
+        D32_S8,
+        -> true
+
         else -> false
     }

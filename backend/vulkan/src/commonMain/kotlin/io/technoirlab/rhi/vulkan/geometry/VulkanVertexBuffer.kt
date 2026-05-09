@@ -12,4 +12,5 @@ internal class VulkanVertexBuffer(
     size: ULong,
     override val vertexCount: UInt,
     override val vertexLayout: VertexLayout,
-) : VulkanBuffer(buffer, memory, size), VertexBuffer
+) : VulkanBuffer(buffer, memory, size),
+    VertexBuffer

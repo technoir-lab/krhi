@@ -19,26 +19,15 @@ import io.technoirlab.rhi.core.geometry.VertexLayout
 import kotlinx.io.Source
 
 class WebGpuDevice : Device {
-    override fun createDepthStencilBuffer(
-        extent: Extent2D,
-        format: Format
-    ): Texture {
+    override fun createDepthStencilBuffer(extent: Extent2D, format: Format): Texture {
         TODO("Not yet implemented")
     }
 
-    override fun createVertexBuffer(
-        source: Source,
-        vertexCount: UInt,
-        vertexLayout: VertexLayout
-    ): VertexBuffer {
+    override fun createVertexBuffer(source: Source, vertexCount: UInt, vertexLayout: VertexLayout): VertexBuffer {
         TODO("Not yet implemented")
     }
 
-    override fun createIndexBuffer(
-        source: Source,
-        indexCount: UInt,
-        indexType: IndexType
-    ): IndexBuffer {
+    override fun createIndexBuffer(source: Source, indexCount: UInt, indexType: IndexType): IndexBuffer {
         TODO("Not yet implemented")
     }
 
@@ -56,7 +45,7 @@ class WebGpuDevice : Device {
         rasterState: RasterState,
         blendState: BlendState,
         depthStencilState: DepthStencilState,
-        pushConstants: ByteArray?
+        pushConstants: ByteArray?,
     ): GraphicsState {
         TODO("Not yet implemented")
     }

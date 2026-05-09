@@ -15,7 +15,7 @@ data class RasterState(
     /**
      * Defines which polygons are considered front-facing.
      */
-    val frontFace: FrontFace = FrontFace.CounterClockwise
+    val frontFace: FrontFace = FrontFace.CounterClockwise,
 )
 
 /**
@@ -35,7 +35,7 @@ enum class CullMode {
     /**
      * No polygons are discarded.
      */
-    None
+    None,
 }
 
 /**
@@ -50,7 +50,7 @@ enum class FillMode {
     /**
      * Polygon edges are drawn as line segments.
      */
-    Wireframe
+    Wireframe,
 }
 
 /**
@@ -65,5 +65,5 @@ enum class FrontFace {
     /**
      * Polygons with vertices whose framebuffer coordinates are given in clockwise order are considered front-facing.
      */
-    Clockwise
+    Clockwise,
 }

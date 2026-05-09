@@ -14,7 +14,7 @@ import io.technoirlab.vulkan.PhysicalDevice as VkPhysicalDevice
 
 internal class VulkanMemoryManager(
     private val device: VkDevice,
-    private val physicalDevice: VkPhysicalDevice
+    private val physicalDevice: VkPhysicalDevice,
 ) {
     context(memScope: MemScope)
     fun allocateBufferMemory(buffer: VkBuffer, flags: VkMemoryPropertyFlags = VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT): VkDeviceMemory {
@@ -43,7 +43,7 @@ internal class VulkanMemoryManager(
     private fun findMemoryType(
         memoryProperties: VkPhysicalDeviceMemoryProperties,
         memoryTypeBits: UInt,
-        flags: VkMemoryPropertyFlags
+        flags: VkMemoryPropertyFlags,
     ): UInt {
         var index = UInt.MAX_VALUE
         for (i in 0u..<memoryProperties.memoryTypeCount) {

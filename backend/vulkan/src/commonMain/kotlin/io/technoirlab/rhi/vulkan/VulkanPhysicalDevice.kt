@@ -44,7 +44,7 @@ internal class VulkanPhysicalDevice(val device: PhysicalDevice) {
                     VulkanQueueFamily(
                         index = index.toUInt(),
                         queueFlags = properties.queueFlags,
-                        queueCount = properties.queueCount
+                        queueCount = properties.queueCount,
                     )
                 }
                 .toList()
@@ -63,10 +63,7 @@ internal class VulkanPhysicalDevice(val device: PhysicalDevice) {
             return score
         }
 
-    fun createDevice(
-        deviceSpec: VulkanDeviceSpec,
-        deviceExtensions: Set<VulkanExtension> = emptySet(),
-    ): VulkanDevice {
+    fun createDevice(deviceSpec: VulkanDeviceSpec, deviceExtensions: Set<VulkanExtension> = emptySet()): VulkanDevice {
         logger.info { "Creating logical device for $name" }
         logger.info {
             "Graphics queue family index: ${deviceSpec.graphicsQueueFamilyIndex}, " +
@@ -118,12 +115,12 @@ internal class VulkanPhysicalDevice(val device: PhysicalDevice) {
             colorSpace = surfaceFormat.second,
             presentMode = presentMode,
             transform = surfaceCapabilities.currentTransform,
-            depthStencilFormat = depthStencilFormat
+            depthStencilFormat = depthStencilFormat,
         )
     }
 
-    context(memScope: MemScope)
     @Suppress("ReturnCount")
+    context(memScope: MemScope)
     fun checkCompatibility(surface: Surface, minApiVersion: UInt): VulkanDeviceCompatibility {
         if (apiVersion < minApiVersion) {
             return VulkanDeviceCompatibility.ApiVersionIncompatible(versionToString(apiVersion))
@@ -146,7 +143,7 @@ internal class VulkanPhysicalDevice(val device: PhysicalDevice) {
         val deviceSpec = VulkanDeviceSpec(
             graphicsQueueFamilyIndex = graphicsQueueFamily.index,
             presentationQueueFamilyIndex = presentationQueueFamily.index,
-            computeQueueFamilyIndex = computeQueueFamily?.index
+            computeQueueFamilyIndex = computeQueueFamily?.index,
         )
         return VulkanDeviceCompatibility.Compatible(deviceSpec)
     }
@@ -157,10 +154,7 @@ internal class VulkanPhysicalDevice(val device: PhysicalDevice) {
         return vulkan13Features.dynamicRendering == VK_TRUE && vulkan13Features.synchronization2 == VK_TRUE
     }
 
-    private fun selectSurfaceFormat(
-        surfaceFormats: Set<Pair<VkFormat, VkColorSpaceKHR>>,
-        hdr: Boolean
-    ): Pair<Format, VkColorSpaceKHR> {
+    private fun selectSurfaceFormat(surfaceFormats: Set<Pair<VkFormat, VkColorSpaceKHR>>, hdr: Boolean): Pair<Format, VkColorSpaceKHR> {
         if (hdr) {
             val format = HDR_FORMATS.firstOrNull { it.first.toVkFormat() to it.second in surfaceFormats }
             if (format != null) {
@@ -191,24 +185,23 @@ internal class VulkanPhysicalDevice(val device: PhysicalDevice) {
     context(memScope: MemScope)
     private fun isSupportedFormat(format: VkFormat, tiling: VkImageTiling, flags: VkFormatFeatureFlags): Boolean {
         val formatProperties = device.getFormatProperties(format)
-        return tiling == VK_IMAGE_TILING_LINEAR && (formatProperties.formatProperties.linearTilingFeatures and flags) != 0u ||
-            tiling == VK_IMAGE_TILING_OPTIMAL && (formatProperties.formatProperties.optimalTilingFeatures and flags) != 0u
+        return (tiling == VK_IMAGE_TILING_LINEAR && (formatProperties.formatProperties.linearTilingFeatures and flags) != 0u) ||
+            (tiling == VK_IMAGE_TILING_OPTIMAL && (formatProperties.formatProperties.optimalTilingFeatures and flags) != 0u)
     }
 
-    private fun Pair<VkFormat, VkColorSpaceKHR>.asString(): String =
-        "${vkFormatToString(first)} (${vkColorSpaceToString(second)})"
+    private fun Pair<VkFormat, VkColorSpaceKHR>.asString(): String = "${vkFormatToString(first)} (${vkColorSpaceToString(second)})"
 
     companion object {
         private val SDR_FORMATS = arrayOf(
-            Format.B8G8R8A8 to VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
+            Format.B8G8R8A8 to VK_COLOR_SPACE_SRGB_NONLINEAR_KHR,
         )
         private val HDR_FORMATS = arrayOf(
-            Format.A2B10G10R10 to VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
+            Format.A2B10G10R10 to VK_COLOR_SPACE_SRGB_NONLINEAR_KHR,
         )
         private val DEPTH_STENCIL_FORMATS = arrayOf(
             Format.D32_S8,
             Format.D24_S8,
-            Format.D16_S8
+            Format.D16_S8,
         )
     }
 }

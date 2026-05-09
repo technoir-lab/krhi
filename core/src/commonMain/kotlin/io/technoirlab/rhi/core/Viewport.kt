@@ -6,5 +6,5 @@ data class Viewport(
     val width: Float,
     val height: Float,
     val minDepth: Float = 0.0f,
-    val maxDepth: Float = 1.0f
+    val maxDepth: Float = 1.0f,
 )

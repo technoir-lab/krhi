@@ -113,97 +113,108 @@ internal inline fun versionToString(version: UInt): String =
     "${VK_VERSION_MAJOR(version)}.${VK_VERSION_MINOR(version)}.${VK_VERSION_PATCH(version)}"
 
 @Suppress("CyclomaticComplexMethod")
-internal fun BlendFactor.toVkBlendFactor(): VkBlendFactor = when (this) {
-    BlendFactor.Zero -> VK_BLEND_FACTOR_ZERO
-    BlendFactor.One -> VK_BLEND_FACTOR_ONE
-    BlendFactor.SrcColor -> VK_BLEND_FACTOR_SRC_COLOR
-    BlendFactor.OneMinusSrcColor -> VK_BLEND_FACTOR_ONE_MINUS_SRC_COLOR
-    BlendFactor.SrcAlpha -> VK_BLEND_FACTOR_SRC_ALPHA
-    BlendFactor.OneMinusSrcAlpha -> VK_BLEND_FACTOR_ONE_MINUS_SRC_ALPHA
-    BlendFactor.DstAlpha -> VK_BLEND_FACTOR_DST_ALPHA
-    BlendFactor.OneMinusDstAlpha -> VK_BLEND_FACTOR_ONE_MINUS_DST_ALPHA
-    BlendFactor.DstColor -> VK_BLEND_FACTOR_DST_COLOR
-    BlendFactor.OneMinusDstColor -> VK_BLEND_FACTOR_ONE_MINUS_DST_COLOR
-    BlendFactor.SrcAlphaSaturated -> VK_BLEND_FACTOR_SRC_ALPHA_SATURATE
-    BlendFactor.ConstantColor -> VK_BLEND_FACTOR_CONSTANT_COLOR
-    BlendFactor.OneMinusConstantColor -> VK_BLEND_FACTOR_ONE_MINUS_CONSTANT_COLOR
-    BlendFactor.Src1Color -> VK_BLEND_FACTOR_SRC1_COLOR
-    BlendFactor.OneMinusSrc1Color -> VK_BLEND_FACTOR_ONE_MINUS_SRC1_COLOR
-    BlendFactor.Src1Alpha -> VK_BLEND_FACTOR_SRC1_ALPHA
-    BlendFactor.OneMinusSrc1Alpha -> VK_BLEND_FACTOR_ONE_MINUS_SRC1_ALPHA
-}
+internal fun BlendFactor.toVkBlendFactor(): VkBlendFactor =
+    when (this) {
+        BlendFactor.Zero -> VK_BLEND_FACTOR_ZERO
+        BlendFactor.One -> VK_BLEND_FACTOR_ONE
+        BlendFactor.SrcColor -> VK_BLEND_FACTOR_SRC_COLOR
+        BlendFactor.OneMinusSrcColor -> VK_BLEND_FACTOR_ONE_MINUS_SRC_COLOR
+        BlendFactor.SrcAlpha -> VK_BLEND_FACTOR_SRC_ALPHA
+        BlendFactor.OneMinusSrcAlpha -> VK_BLEND_FACTOR_ONE_MINUS_SRC_ALPHA
+        BlendFactor.DstAlpha -> VK_BLEND_FACTOR_DST_ALPHA
+        BlendFactor.OneMinusDstAlpha -> VK_BLEND_FACTOR_ONE_MINUS_DST_ALPHA
+        BlendFactor.DstColor -> VK_BLEND_FACTOR_DST_COLOR
+        BlendFactor.OneMinusDstColor -> VK_BLEND_FACTOR_ONE_MINUS_DST_COLOR
+        BlendFactor.SrcAlphaSaturated -> VK_BLEND_FACTOR_SRC_ALPHA_SATURATE
+        BlendFactor.ConstantColor -> VK_BLEND_FACTOR_CONSTANT_COLOR
+        BlendFactor.OneMinusConstantColor -> VK_BLEND_FACTOR_ONE_MINUS_CONSTANT_COLOR
+        BlendFactor.Src1Color -> VK_BLEND_FACTOR_SRC1_COLOR
+        BlendFactor.OneMinusSrc1Color -> VK_BLEND_FACTOR_ONE_MINUS_SRC1_COLOR
+        BlendFactor.Src1Alpha -> VK_BLEND_FACTOR_SRC1_ALPHA
+        BlendFactor.OneMinusSrc1Alpha -> VK_BLEND_FACTOR_ONE_MINUS_SRC1_ALPHA
+    }
 
-internal fun BlendOp.toVkBlendOp(): VkBlendOp = when (this) {
-    BlendOp.Add -> VK_BLEND_OP_ADD
-    BlendOp.Subtract -> VK_BLEND_OP_SUBTRACT
-    BlendOp.ReverseSubtract -> VK_BLEND_OP_REVERSE_SUBTRACT
-    BlendOp.Min -> VK_BLEND_OP_MIN
-    BlendOp.Max -> VK_BLEND_OP_MAX
-}
+internal fun BlendOp.toVkBlendOp(): VkBlendOp =
+    when (this) {
+        BlendOp.Add -> VK_BLEND_OP_ADD
+        BlendOp.Subtract -> VK_BLEND_OP_SUBTRACT
+        BlendOp.ReverseSubtract -> VK_BLEND_OP_REVERSE_SUBTRACT
+        BlendOp.Min -> VK_BLEND_OP_MIN
+        BlendOp.Max -> VK_BLEND_OP_MAX
+    }
 
-internal fun ComparisonFunc.toVkCompareOp(): VkCompareOp = when (this) {
-    ComparisonFunc.Never -> VK_COMPARE_OP_NEVER
-    ComparisonFunc.Less -> VK_COMPARE_OP_LESS
-    ComparisonFunc.Equal -> VK_COMPARE_OP_EQUAL
-    ComparisonFunc.LessOrEqual -> VK_COMPARE_OP_LESS_OR_EQUAL
-    ComparisonFunc.Greater -> VK_COMPARE_OP_GREATER
-    ComparisonFunc.NotEqual -> VK_COMPARE_OP_NOT_EQUAL
-    ComparisonFunc.GreaterOrEqual -> VK_COMPARE_OP_GREATER_OR_EQUAL
-    ComparisonFunc.Always -> VK_COMPARE_OP_ALWAYS
-}
+internal fun ComparisonFunc.toVkCompareOp(): VkCompareOp =
+    when (this) {
+        ComparisonFunc.Never -> VK_COMPARE_OP_NEVER
+        ComparisonFunc.Less -> VK_COMPARE_OP_LESS
+        ComparisonFunc.Equal -> VK_COMPARE_OP_EQUAL
+        ComparisonFunc.LessOrEqual -> VK_COMPARE_OP_LESS_OR_EQUAL
+        ComparisonFunc.Greater -> VK_COMPARE_OP_GREATER
+        ComparisonFunc.NotEqual -> VK_COMPARE_OP_NOT_EQUAL
+        ComparisonFunc.GreaterOrEqual -> VK_COMPARE_OP_GREATER_OR_EQUAL
+        ComparisonFunc.Always -> VK_COMPARE_OP_ALWAYS
+    }
 
-internal fun CullMode.toVkCullMode(): VkCullModeFlags = when (this) {
-    CullMode.Back -> VK_CULL_MODE_BACK_BIT
-    CullMode.Front -> VK_CULL_MODE_FRONT_BIT
-    CullMode.None -> VK_CULL_MODE_NONE
-}
+internal fun CullMode.toVkCullMode(): VkCullModeFlags =
+    when (this) {
+        CullMode.Back -> VK_CULL_MODE_BACK_BIT
+        CullMode.Front -> VK_CULL_MODE_FRONT_BIT
+        CullMode.None -> VK_CULL_MODE_NONE
+    }
 
-internal fun FillMode.toVkPolygonMode(): VkPolygonMode = when (this) {
-    FillMode.Solid -> VK_POLYGON_MODE_FILL
-    FillMode.Wireframe -> VK_POLYGON_MODE_LINE
-}
+internal fun FillMode.toVkPolygonMode(): VkPolygonMode =
+    when (this) {
+        FillMode.Solid -> VK_POLYGON_MODE_FILL
+        FillMode.Wireframe -> VK_POLYGON_MODE_LINE
+    }
 
-internal fun FrontFace.toVkFrontFace(): VkFrontFace = when (this) {
-    FrontFace.CounterClockwise -> VK_FRONT_FACE_COUNTER_CLOCKWISE
-    FrontFace.Clockwise -> VK_FRONT_FACE_CLOCKWISE
-}
+internal fun FrontFace.toVkFrontFace(): VkFrontFace =
+    when (this) {
+        FrontFace.CounterClockwise -> VK_FRONT_FACE_COUNTER_CLOCKWISE
+        FrontFace.Clockwise -> VK_FRONT_FACE_CLOCKWISE
+    }
 
-internal fun IndexType.toVkIndexType(): VkIndexType = when (this) {
-    IndexType.Int16 -> VK_INDEX_TYPE_UINT16
-    IndexType.Int32 -> VK_INDEX_TYPE_UINT32
-}
+internal fun IndexType.toVkIndexType(): VkIndexType =
+    when (this) {
+        IndexType.Int16 -> VK_INDEX_TYPE_UINT16
+        IndexType.Int32 -> VK_INDEX_TYPE_UINT32
+    }
 
-internal fun PrimitiveType.toVkPrimitiveTopology(): VkPrimitiveTopology = when (this) {
-    PrimitiveType.PointList -> VK_PRIMITIVE_TOPOLOGY_POINT_LIST
-    PrimitiveType.LineList -> VK_PRIMITIVE_TOPOLOGY_LINE_LIST
-    PrimitiveType.LineStrip -> VK_PRIMITIVE_TOPOLOGY_LINE_STRIP
-    PrimitiveType.TriangleList -> VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST
-    PrimitiveType.TriangleStrip -> VK_PRIMITIVE_TOPOLOGY_TRIANGLE_STRIP
-}
+internal fun PrimitiveType.toVkPrimitiveTopology(): VkPrimitiveTopology =
+    when (this) {
+        PrimitiveType.PointList -> VK_PRIMITIVE_TOPOLOGY_POINT_LIST
+        PrimitiveType.LineList -> VK_PRIMITIVE_TOPOLOGY_LINE_LIST
+        PrimitiveType.LineStrip -> VK_PRIMITIVE_TOPOLOGY_LINE_STRIP
+        PrimitiveType.TriangleList -> VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST
+        PrimitiveType.TriangleStrip -> VK_PRIMITIVE_TOPOLOGY_TRIANGLE_STRIP
+    }
 
-internal fun ShaderType.toVkShaderStageFlagBits(): VkShaderStageFlagBits = when (this) {
-    ShaderType.Compute -> VK_SHADER_STAGE_COMPUTE_BIT
-    ShaderType.Vertex -> VK_SHADER_STAGE_VERTEX_BIT
-    ShaderType.Hull -> VK_SHADER_STAGE_TESSELLATION_CONTROL_BIT
-    ShaderType.Domain -> VK_SHADER_STAGE_TESSELLATION_EVALUATION_BIT
-    ShaderType.Geometry -> VK_SHADER_STAGE_GEOMETRY_BIT
-    ShaderType.Fragment -> VK_SHADER_STAGE_FRAGMENT_BIT
-}
+internal fun ShaderType.toVkShaderStageFlagBits(): VkShaderStageFlagBits =
+    when (this) {
+        ShaderType.Compute -> VK_SHADER_STAGE_COMPUTE_BIT
+        ShaderType.Vertex -> VK_SHADER_STAGE_VERTEX_BIT
+        ShaderType.Hull -> VK_SHADER_STAGE_TESSELLATION_CONTROL_BIT
+        ShaderType.Domain -> VK_SHADER_STAGE_TESSELLATION_EVALUATION_BIT
+        ShaderType.Geometry -> VK_SHADER_STAGE_GEOMETRY_BIT
+        ShaderType.Fragment -> VK_SHADER_STAGE_FRAGMENT_BIT
+    }
 
-internal fun StencilOp.toVkStencilOp(): VkStencilOp = when (this) {
-    StencilOp.Keep -> VK_STENCIL_OP_KEEP
-    StencilOp.Zero -> VK_STENCIL_OP_ZERO
-    StencilOp.Replace -> VK_STENCIL_OP_REPLACE
-    StencilOp.Invert -> VK_STENCIL_OP_INVERT
-    StencilOp.IncrementAndClamp -> VK_STENCIL_OP_INCREMENT_AND_CLAMP
-    StencilOp.DecrementAndClamp -> VK_STENCIL_OP_DECREMENT_AND_CLAMP
-    StencilOp.IncrementAndWrap -> VK_STENCIL_OP_INCREMENT_AND_WRAP
-    StencilOp.DecrementAndWrap -> VK_STENCIL_OP_DECREMENT_AND_WRAP
-}
+internal fun StencilOp.toVkStencilOp(): VkStencilOp =
+    when (this) {
+        StencilOp.Keep -> VK_STENCIL_OP_KEEP
+        StencilOp.Zero -> VK_STENCIL_OP_ZERO
+        StencilOp.Replace -> VK_STENCIL_OP_REPLACE
+        StencilOp.Invert -> VK_STENCIL_OP_INVERT
+        StencilOp.IncrementAndClamp -> VK_STENCIL_OP_INCREMENT_AND_CLAMP
+        StencilOp.DecrementAndClamp -> VK_STENCIL_OP_DECREMENT_AND_CLAMP
+        StencilOp.IncrementAndWrap -> VK_STENCIL_OP_INCREMENT_AND_WRAP
+        StencilOp.DecrementAndWrap -> VK_STENCIL_OP_DECREMENT_AND_WRAP
+    }
 
-internal fun VertexAttribute.Type.toVkFormat(): VkFormat = when (this) {
-    VertexAttribute.Type.Float -> VK_FORMAT_R32_SFLOAT
-    VertexAttribute.Type.Float2 -> VK_FORMAT_R32G32_SFLOAT
-    VertexAttribute.Type.Float3 -> VK_FORMAT_R32G32B32_SFLOAT
-    VertexAttribute.Type.Float4 -> VK_FORMAT_R32G32B32A32_SFLOAT
-}
+internal fun VertexAttribute.Type.toVkFormat(): VkFormat =
+    when (this) {
+        VertexAttribute.Type.Float -> VK_FORMAT_R32_SFLOAT
+        VertexAttribute.Type.Float2 -> VK_FORMAT_R32G32_SFLOAT
+        VertexAttribute.Type.Float3 -> VK_FORMAT_R32G32B32_SFLOAT
+        VertexAttribute.Type.Float4 -> VK_FORMAT_R32G32B32A32_SFLOAT
+    }

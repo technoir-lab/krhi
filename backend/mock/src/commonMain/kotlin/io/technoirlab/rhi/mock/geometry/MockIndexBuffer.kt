@@ -7,5 +7,6 @@ import io.technoirlab.rhi.mock.MockBuffer
 internal class MockIndexBuffer(
     size: ULong,
     override val indexCount: UInt,
-    override val indexType: IndexType
-) : MockBuffer(size), IndexBuffer
+    override val indexType: IndexType,
+) : MockBuffer(size),
+    IndexBuffer

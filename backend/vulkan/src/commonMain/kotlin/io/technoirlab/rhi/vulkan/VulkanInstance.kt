@@ -28,7 +28,7 @@ internal class VulkanInstance(
     private val vulkan: Vulkan,
     private val apiVersion: UInt,
     private val enabledLayers: Set<VulkanLayer>,
-    private val enabledExtensions: Set<VulkanExtension>
+    private val enabledExtensions: Set<VulkanExtension>,
 ) : AutoCloseable {
 
     private val logger = KotlinLogging.logger("VulkanRenderer")
@@ -52,8 +52,8 @@ internal class VulkanInstance(
                 applicationInfo = ApplicationInfo(
                     apiVersion = apiVersion,
                     applicationVersion = VK_MAKE_VERSION(1u, 0u, 0u),
-                    engineVersion = VK_MAKE_VERSION(1u, 0u, 0u)
-                )
+                    engineVersion = VK_MAKE_VERSION(1u, 0u, 0u),
+                ),
             )
 
             debugMessenger = if (VulkanExtension(VK_EXT_DEBUG_UTILS_EXTENSION_NAME) in enabledExtensions) {
@@ -64,7 +64,7 @@ internal class VulkanInstance(
                     messageType = VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT or
                         VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT or
                         VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT,
-                    callback = DebugMessengerLogger(logger)
+                    callback = DebugMessengerLogger(logger),
                 )
             } else {
                 null
@@ -78,18 +78,16 @@ internal class VulkanInstance(
     }
 
     context(memScope: MemScope)
-    fun createSurface(windowHandle: WindowHandle): Surface =
-        instance.createSurface(windowHandle)
+    fun createSurface(windowHandle: WindowHandle): Surface = instance.createSurface(windowHandle)
 
     context(memScope: MemScope)
-    fun getPhysicalDevices(): List<VulkanPhysicalDevice> =
-        instance.enumeratePhysicalDevices().map { VulkanPhysicalDevice(it) }.toList()
+    fun getPhysicalDevices(): List<VulkanPhysicalDevice> = instance.enumeratePhysicalDevices().map { VulkanPhysicalDevice(it) }.toList()
 
     private class DebugMessengerLogger(private val logger: KLogger) : DebugMessenger.Callback {
         override fun onEvent(
             messageSeverity: VkDebugUtilsMessageSeverityFlagBitsEXT,
             messageTypes: VkDebugUtilsMessageTypeFlagBitsEXT,
-            callbackData: VkDebugUtilsMessengerCallbackDataEXT
+            callbackData: VkDebugUtilsMessengerCallbackDataEXT,
         ) {
             val message = callbackData.pMessage?.toKString() ?: return
             when (messageSeverity) {

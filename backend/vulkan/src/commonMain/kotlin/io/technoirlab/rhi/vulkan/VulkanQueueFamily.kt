@@ -7,7 +7,7 @@ import io.technoirlab.volk.VkQueueFlags
 internal data class VulkanQueueFamily(
     val index: UInt,
     val queueFlags: VkQueueFlags,
-    val queueCount: UInt
+    val queueCount: UInt,
 ) {
     val supportsGraphics: Boolean
         get() = queueFlags and VK_QUEUE_GRAPHICS_BIT != 0u

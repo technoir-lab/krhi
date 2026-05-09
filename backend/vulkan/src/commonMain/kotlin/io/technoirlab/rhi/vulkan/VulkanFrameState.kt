@@ -14,5 +14,5 @@ internal class VulkanFrameState(
     val acquireSemaphore: Semaphore,
     val submitSemaphore: Semaphore,
     val submitFence: Fence,
-    val recreate: Boolean
+    val recreate: Boolean,
 ) : FrameState

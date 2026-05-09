@@ -11,5 +11,5 @@ enum class ShaderType {
     Hull,
     Domain,
     Geometry,
-    Fragment
+    Fragment,
 }

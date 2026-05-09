@@ -5,5 +5,5 @@ enum class PrimitiveType {
     LineList,
     LineStrip,
     TriangleList,
-    TriangleStrip
+    TriangleStrip,
 }

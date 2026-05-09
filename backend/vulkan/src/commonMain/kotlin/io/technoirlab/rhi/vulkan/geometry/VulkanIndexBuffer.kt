@@ -11,5 +11,6 @@ internal class VulkanIndexBuffer(
     memory: VkDeviceMemory,
     size: ULong,
     override val indexCount: UInt,
-    override val indexType: IndexType
-) : VulkanBuffer(buffer, memory, size), IndexBuffer
+    override val indexType: IndexType,
+) : VulkanBuffer(buffer, memory, size),
+    IndexBuffer

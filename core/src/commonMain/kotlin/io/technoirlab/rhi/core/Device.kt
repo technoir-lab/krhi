@@ -27,6 +27,6 @@ interface Device : AutoCloseable {
         rasterState: RasterState = RasterState(),
         blendState: BlendState = BlendState(),
         depthStencilState: DepthStencilState = DepthStencilState(),
-        pushConstants: ByteArray? = null
+        pushConstants: ByteArray? = null,
     ): GraphicsState
 }
