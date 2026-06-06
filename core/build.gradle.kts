@@ -25,6 +25,10 @@ kotlin {
         browser()
     }
 
+    compilerOptions {
+        optIn.add("kotlinx.cinterop.ExperimentalForeignApi")
+    }
+
     sourceSets {
         commonMain.dependencies {
             api(libs.kotlin.math)
