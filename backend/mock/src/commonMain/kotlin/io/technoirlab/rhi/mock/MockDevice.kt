@@ -43,18 +43,17 @@ class MockDevice : Device {
         blendState: BlendState,
         depthStencilState: DepthStencilState,
         pushConstants: ByteArray?,
-    ): GraphicsState =
-        MockGraphicsState(
-            vertexBuffer = vertexBuffer,
-            indexBuffer = indexBuffer,
-            primitiveType = primitiveType,
-            vertexShader = vertexShader,
-            fragmentShader = fragmentShader,
-            rasterState = rasterState,
-            blendState = blendState,
-            depthStencilState = depthStencilState,
-            pushConstants = pushConstants,
-        )
+    ): GraphicsState = MockGraphicsState(
+        vertexBuffer = vertexBuffer,
+        indexBuffer = indexBuffer,
+        primitiveType = primitiveType,
+        vertexShader = vertexShader,
+        fragmentShader = fragmentShader,
+        rasterState = rasterState,
+        blendState = blendState,
+        depthStencilState = depthStencilState,
+        pushConstants = pushConstants,
+    )
 
     override fun close() = Unit
 }

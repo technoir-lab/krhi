@@ -9,7 +9,6 @@ import kotlinx.cinterop.interpretCPointer
 import kotlinx.cinterop.objcPtr
 
 context(memScope: MemScope)
-internal actual fun Instance.createSurface(windowHandle: WindowHandle): Surface =
-    createMetalSurface {
-        pLayer = interpretCPointer(windowHandle.layer.objcPtr())
-    }
+internal actual fun Instance.createSurface(windowHandle: WindowHandle): Surface = createMetalSurface {
+    pLayer = interpretCPointer(windowHandle.layer.objcPtr())
+}

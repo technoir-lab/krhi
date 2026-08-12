@@ -19,8 +19,7 @@ internal data class VulkanSwapChainSpec(
         color = listOf(Float4(0.392f, 0.584f, 0.929f, 1.0f)),
     ),
 ) {
-    override fun toString(): String =
-        "VulkanSwapChainSpec(textureCount=$textureCount, format=$format, " +
-            "colorSpace=${vkColorSpaceToString(colorSpace)}, presentMode=${vkPresentModeToString(presentMode)}, " +
-            "transform=${vkSurfaceTransformFlagBitsToString(transform)}, depthStencilFormat=$depthStencilFormat}, clearValues=$clearValues)"
+    override fun toString(): String = "VulkanSwapChainSpec(textureCount=$textureCount, format=$format, " +
+        "colorSpace=${vkColorSpaceToString(colorSpace)}, presentMode=${vkPresentModeToString(presentMode)}, " +
+        "transform=${vkSurfaceTransformFlagBitsToString(transform)}, depthStencilFormat=$depthStencilFormat}, clearValues=$clearValues)"
 }

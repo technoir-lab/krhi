@@ -7,8 +7,7 @@ import io.technoirlab.vulkan.createWaylandSurface
 import kotlinx.cinterop.MemScope
 
 context(memScope: MemScope)
-internal actual fun Instance.createSurface(windowHandle: WindowHandle): Surface =
-    createWaylandSurface {
-        display = TODO()
-        surface = TODO()
-    }
+internal actual fun Instance.createSurface(windowHandle: WindowHandle): Surface = createWaylandSurface {
+    display = TODO()
+    surface = TODO()
+}

@@ -35,18 +35,17 @@ internal class VulkanTexture(
 }
 
 context(memScope: MemScope)
-internal fun Device.createImageView2D(image: Image, format: VkFormat, aspectMask: VkImageAspectFlags): ImageView =
-    createImageView {
-        viewType = VK_IMAGE_VIEW_TYPE_2D
-        components.r = VK_COMPONENT_SWIZZLE_IDENTITY
-        components.g = VK_COMPONENT_SWIZZLE_IDENTITY
-        components.b = VK_COMPONENT_SWIZZLE_IDENTITY
-        components.a = VK_COMPONENT_SWIZZLE_IDENTITY
-        subresourceRange.aspectMask = aspectMask
-        subresourceRange.baseMipLevel = 0u
-        subresourceRange.levelCount = 1u
-        subresourceRange.baseArrayLayer = 0u
-        subresourceRange.layerCount = 1u
-        this.image = image.handle
-        this.format = format
-    }
+internal fun Device.createImageView2D(image: Image, format: VkFormat, aspectMask: VkImageAspectFlags): ImageView = createImageView {
+    viewType = VK_IMAGE_VIEW_TYPE_2D
+    components.r = VK_COMPONENT_SWIZZLE_IDENTITY
+    components.g = VK_COMPONENT_SWIZZLE_IDENTITY
+    components.b = VK_COMPONENT_SWIZZLE_IDENTITY
+    components.a = VK_COMPONENT_SWIZZLE_IDENTITY
+    subresourceRange.aspectMask = aspectMask
+    subresourceRange.baseMipLevel = 0u
+    subresourceRange.levelCount = 1u
+    subresourceRange.baseArrayLayer = 0u
+    subresourceRange.layerCount = 1u
+    this.image = image.handle
+    this.format = format
+}

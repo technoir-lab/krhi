@@ -12,10 +12,9 @@ internal abstract class VulkanBuffer(
     override val size: ULong,
 ) : Buffer {
 
-    override fun updateData(source: Source, size: ULong, offset: ULong) =
-        memScoped {
-            memory.copyData(source, size, offset)
-        }
+    override fun updateData(source: Source, size: ULong, offset: ULong) = memScoped {
+        memory.copyData(source, size, offset)
+    }
 
     override fun close() {
         memory.close()

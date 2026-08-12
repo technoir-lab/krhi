@@ -7,8 +7,7 @@ import io.technoirlab.vulkan.createWin32Surface
 import kotlinx.cinterop.MemScope
 
 context(memScope: MemScope)
-internal actual fun Instance.createSurface(windowHandle: WindowHandle): Surface =
-    createWin32Surface {
-        hinstance = windowHandle.moduleHandle
-        hwnd = windowHandle.nativeHandle
-    }
+internal actual fun Instance.createSurface(windowHandle: WindowHandle): Surface = createWin32Surface {
+    hinstance = windowHandle.moduleHandle
+    hwnd = windowHandle.nativeHandle
+}

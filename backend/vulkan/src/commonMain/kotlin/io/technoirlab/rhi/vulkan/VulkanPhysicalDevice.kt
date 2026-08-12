@@ -74,10 +74,9 @@ internal class VulkanPhysicalDevice(val device: PhysicalDevice) {
     }
 
     context(memScope: MemScope)
-    fun getSupportedExtensions(): Set<VulkanExtension> =
-        device.enumerateDeviceExtensionProperties()
-            .map { VulkanExtension(it.extensionName.toKString()) }
-            .toSet()
+    fun getSupportedExtensions(): Set<VulkanExtension> = device.enumerateDeviceExtensionProperties()
+        .map { VulkanExtension(it.extensionName.toKString()) }
+        .toSet()
 
     context(memScope: MemScope)
     fun getSwapChainSpec(surface: Surface, config: RendererConfig): VulkanSwapChainSpec {
@@ -177,10 +176,9 @@ internal class VulkanPhysicalDevice(val device: PhysicalDevice) {
         }
 
     context(memScope: MemScope)
-    private fun chooseDepthStencilFormat(): Format =
-        DEPTH_STENCIL_FORMATS.firstOrNull {
-            isSupportedFormat(it.toVkFormat(), VK_IMAGE_TILING_OPTIMAL, VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT)
-        } ?: error("No supported depth stencil format found")
+    private fun chooseDepthStencilFormat(): Format = DEPTH_STENCIL_FORMATS.firstOrNull {
+        isSupportedFormat(it.toVkFormat(), VK_IMAGE_TILING_OPTIMAL, VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT)
+    } ?: error("No supported depth stencil format found")
 
     context(memScope: MemScope)
     private fun isSupportedFormat(format: VkFormat, tiling: VkImageTiling, flags: VkFormatFeatureFlags): Boolean {
