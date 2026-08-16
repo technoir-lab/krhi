@@ -1,9 +1,9 @@
 package io.technoirlab.rhi.vulkan
 
 import io.technoirlab.rhi.core.FrameState
-import io.technoirlab.vulkan.CommandBuffer
-import io.technoirlab.vulkan.Fence
-import io.technoirlab.vulkan.Semaphore
+import io.technoirlab.vulkan.command.CommandBuffer
+import io.technoirlab.vulkan.sync.Fence
+import io.technoirlab.vulkan.sync.Semaphore
 
 @Suppress("LongParameterList")
 internal class VulkanFrameState(

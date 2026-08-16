@@ -8,8 +8,8 @@ import io.technoirlab.rhi.core.Shader
 import io.technoirlab.rhi.core.geometry.IndexBuffer
 import io.technoirlab.rhi.core.geometry.PrimitiveType
 import io.technoirlab.rhi.core.geometry.VertexBuffer
-import io.technoirlab.vulkan.Pipeline
-import io.technoirlab.vulkan.PipelineLayout
+import io.technoirlab.vulkan.pipeline.Pipeline
+import io.technoirlab.vulkan.pipeline.PipelineLayout
 
 @Suppress("LongParameterList")
 internal class VulkanGraphicsState(

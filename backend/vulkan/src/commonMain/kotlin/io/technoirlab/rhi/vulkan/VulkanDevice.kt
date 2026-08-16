@@ -52,12 +52,12 @@ import io.technoirlab.volk.VkPushConstantRange
 import io.technoirlab.volk.VkStencilOpState
 import io.technoirlab.volk.VkVertexInputAttributeDescription
 import io.technoirlab.volk.VkVertexInputBindingDescription
-import io.technoirlab.vulkan.CommandPool
-import io.technoirlab.vulkan.Image
 import io.technoirlab.vulkan.PhysicalDevice
-import io.technoirlab.vulkan.PipelineCache
 import io.technoirlab.vulkan.Queue
-import io.technoirlab.vulkan.Surface
+import io.technoirlab.vulkan.command.CommandPool
+import io.technoirlab.vulkan.pipeline.PipelineCache
+import io.technoirlab.vulkan.presentation.Surface
+import io.technoirlab.vulkan.resource.Image
 import kotlinx.cinterop.MemScope
 import kotlinx.cinterop.addressOf
 import kotlinx.cinterop.alloc
@@ -67,7 +67,6 @@ import kotlinx.cinterop.cstr
 import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.reinterpret
-import kotlinx.cinterop.toCStringArray
 import kotlinx.cinterop.usePinned
 import kotlinx.cinterop.value
 import kotlinx.io.Source
@@ -138,9 +137,7 @@ internal class VulkanDevice(
     override fun close() {
         pipelineCache.close()
         computeCommandPool?.close()
-        computeQueue?.close()
         graphicsCommandPool.close()
-        graphicsQueue.close()
         device.close()
     }
 
@@ -341,13 +338,11 @@ internal class VulkanDevice(
             pQueuePriorities = memScope.allocArrayOf(1.0f)
             queueFamilyIndex = queueFamilyIndices[index]
         }
-        val enabledExtensionNames = enabledExtensions.map { it.name }.toCStringArray(memScope)
         return createDevice(
+            enabledExtensions = enabledExtensions.map { it.name },
             createInfo = {
                 queueCreateInfoCount = queueFamilyIndices.size.toUInt()
                 pQueueCreateInfos = queueCreateInfos
-                enabledExtensionCount = enabledExtensions.size.toUInt()
-                ppEnabledExtensionNames = enabledExtensionNames
             },
             features13 = {
                 dynamicRendering = VK_TRUE
