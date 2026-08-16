@@ -20,7 +20,7 @@ import io.technoirlab.volk.VkFormatFeatureFlags
 import io.technoirlab.volk.VkImageTiling
 import io.technoirlab.volk.VkPresentModeKHR
 import io.technoirlab.vulkan.PhysicalDevice
-import io.technoirlab.vulkan.Surface
+import io.technoirlab.vulkan.presentation.Surface
 import kotlinx.cinterop.MemScope
 import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.toKString
@@ -149,8 +149,10 @@ internal class VulkanPhysicalDevice(val device: PhysicalDevice) {
 
     context(memScope: MemScope)
     private fun checkFeatureSupport(): Boolean {
-        val (_, vulkan13Features) = device.getFeatures()
-        return vulkan13Features.dynamicRendering == VK_TRUE && vulkan13Features.synchronization2 == VK_TRUE
+        val features = device.getFeatures()
+        return features.features13.dynamicRendering == VK_TRUE &&
+            features.features13.synchronization2 == VK_TRUE &&
+            features.features14.dynamicRenderingLocalRead == VK_TRUE
     }
 
     private fun selectSurfaceFormat(surfaceFormats: Set<Pair<VkFormat, VkColorSpaceKHR>>, hdr: Boolean): Pair<Format, VkColorSpaceKHR> {

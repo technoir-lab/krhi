@@ -33,9 +33,9 @@ import io.technoirlab.volk.VkAccessFlags2
 import io.technoirlab.volk.VkImageLayout
 import io.technoirlab.volk.VkPipelineStageFlags2
 import io.technoirlab.volk.VkRenderingAttachmentInfo
-import io.technoirlab.vulkan.CommandBuffer
-import io.technoirlab.vulkan.Surface
 import io.technoirlab.vulkan.Vulkan
+import io.technoirlab.vulkan.command.CommandBuffer
+import io.technoirlab.vulkan.presentation.Surface
 import kotlinx.cinterop.MemScope
 import kotlinx.cinterop.alloc
 import kotlinx.cinterop.allocArray

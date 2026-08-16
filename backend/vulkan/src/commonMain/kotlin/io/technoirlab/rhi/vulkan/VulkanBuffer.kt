@@ -3,8 +3,8 @@ package io.technoirlab.rhi.vulkan
 import io.technoirlab.rhi.core.Buffer
 import kotlinx.cinterop.memScoped
 import kotlinx.io.Source
-import io.technoirlab.vulkan.Buffer as VkBuffer
-import io.technoirlab.vulkan.DeviceMemory as VkDeviceMemory
+import io.technoirlab.vulkan.resource.Buffer as VkBuffer
+import io.technoirlab.vulkan.resource.DeviceMemory as VkDeviceMemory
 
 internal abstract class VulkanBuffer(
     internal val buffer: VkBuffer,
