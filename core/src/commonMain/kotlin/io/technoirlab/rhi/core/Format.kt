@@ -27,7 +27,6 @@ inline val Format.hasDepthComponent: Boolean
         D32,
         D32_S8,
         -> true
-
         else -> false
     }
 
@@ -37,6 +36,5 @@ inline val Format.hasStencilComponent: Boolean
         D24_S8,
         D32_S8,
         -> true
-
         else -> false
     }
