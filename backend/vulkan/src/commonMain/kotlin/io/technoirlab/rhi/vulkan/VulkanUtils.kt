@@ -1,5 +1,3 @@
-@file:Suppress("NOTHING_TO_INLINE")
-
 package io.technoirlab.rhi.vulkan
 
 import io.technoirlab.rhi.core.BlendFactor

@@ -44,5 +44,4 @@ internal fun getAspectMask(format: Format): VkImageAspectFlags {
     return aspectMask
 }
 
-@Suppress("NOTHING_TO_INLINE")
 internal inline fun vkFormatToString(format: VkFormat): String = string_VkFormat(format)!!.toKString().removePrefix("VK_FORMAT_")
