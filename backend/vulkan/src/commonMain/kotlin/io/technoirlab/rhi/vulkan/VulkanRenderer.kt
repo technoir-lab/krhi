@@ -231,7 +231,9 @@ class VulkanRenderer : Renderer {
         val availableDevices = instance.getPhysicalDevices()
         check(availableDevices.isNotEmpty()) { "No devices found" }
 
-        val deviceCompatibility = availableDevices.associateWith { it.checkCompatibility(surface, minApiVersion) }
+        val deviceCompatibility = availableDevices.associateWith {
+            it.checkCompatibility(surface, minApiVersion, REQUIRED_DEVICE_EXTENSIONS)
+        }
         val (compatibleDevices, incompatibleDevices) = deviceCompatibility.entries.partition {
             it.value is VulkanDeviceCompatibility.Compatible
         }

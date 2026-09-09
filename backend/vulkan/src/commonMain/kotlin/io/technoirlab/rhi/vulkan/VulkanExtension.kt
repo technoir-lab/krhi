@@ -1,6 +1,7 @@
 package io.technoirlab.rhi.vulkan
 
 import io.technoirlab.volk.VK_EXT_DEBUG_UTILS_EXTENSION_NAME
+import io.technoirlab.volk.VK_KHR_PORTABILITY_SUBSET_EXTENSION_NAME
 
 internal value class VulkanExtension(val name: String) : Comparable<VulkanExtension> {
     override fun compareTo(other: VulkanExtension): Int = name.compareTo(other.name)
@@ -24,4 +25,6 @@ internal val OPTIONAL_INSTANCE_EXTENSIONS: Set<VulkanExtension> = setOf(
     VulkanExtension(VK_EXT_DEBUG_UTILS_EXTENSION_NAME),
 )
 internal expect val REQUIRED_DEVICE_EXTENSIONS: Set<VulkanExtension>
-internal val OPTIONAL_DEVICE_EXTENSIONS: Set<VulkanExtension> = emptySet()
+internal val OPTIONAL_DEVICE_EXTENSIONS: Set<VulkanExtension> = setOf(
+    VulkanExtension(VK_KHR_PORTABILITY_SUBSET_EXTENSION_NAME),
+)

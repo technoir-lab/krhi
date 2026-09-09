@@ -352,6 +352,9 @@ internal class VulkanDevice(
                 dynamicRendering = VK_TRUE
                 synchronization2 = VK_TRUE
             },
+            features14 = {
+                dynamicRenderingLocalRead = VK_TRUE
+            },
         )
     }
 

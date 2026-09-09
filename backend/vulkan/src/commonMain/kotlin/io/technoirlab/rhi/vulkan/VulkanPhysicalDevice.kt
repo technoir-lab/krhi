@@ -120,9 +120,13 @@ internal class VulkanPhysicalDevice(val device: PhysicalDevice) {
 
     @Suppress("ReturnCount")
     context(memScope: MemScope)
-    fun checkCompatibility(surface: Surface, minApiVersion: UInt): VulkanDeviceCompatibility {
+    fun checkCompatibility(surface: Surface, minApiVersion: UInt, requiredExtensions: Set<VulkanExtension>): VulkanDeviceCompatibility {
         if (apiVersion < minApiVersion) {
             return VulkanDeviceCompatibility.ApiVersionIncompatible(versionToString(apiVersion))
+        }
+        val missingExtensions = requiredExtensions - getSupportedExtensions()
+        if (missingExtensions.isNotEmpty()) {
+            return VulkanDeviceCompatibility.ExtensionsUnsupported(missingExtensions)
         }
         val graphicsQueueFamilies = queueFamilies.filter { it.supportsGraphics }
         if (graphicsQueueFamilies.isEmpty()) {

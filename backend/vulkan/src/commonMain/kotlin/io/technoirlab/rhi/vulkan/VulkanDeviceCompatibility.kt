@@ -11,6 +11,10 @@ internal sealed class VulkanDeviceCompatibility {
         override val description: String get() = "API version $supportedApiVersion"
     }
 
+    data class ExtensionsUnsupported(val missingExtensions: Set<VulkanExtension>) : VulkanDeviceCompatibility() {
+        override val description: String get() = "Required extensions unsupported: [${missingExtensions.joinToString()}]"
+    }
+
     data object GraphicsIncompatible : VulkanDeviceCompatibility() {
         override val description: String get() = "Graphics unsupported"
     }
