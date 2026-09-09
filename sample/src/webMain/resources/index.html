@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Triangle Sample | Kotlin RHI</title>
+  <title>WebGPU Initialization | Kotlin RHI</title>
   <style>
     body {
       margin: 0;
@@ -16,10 +16,21 @@
       width: 100vw;
       height: 100vh;
     }
+    #webgpu-status {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      margin: 0;
+      padding: 1rem;
+      color: white;
+      background-color: #000A;
+      font-family: sans-serif;
+    }
   </style>
 </head>
 <body>
 <canvas id="webgpu-canvas"></canvas>
+<p id="webgpu-status" role="status">Initializing WebGPU...</p>
 <script type="module" src="sample.js"></script>
 </body>
 </html>

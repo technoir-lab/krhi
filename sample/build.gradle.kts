@@ -36,7 +36,8 @@ kotlin {
         }
         webMain.dependencies {
             implementation(project(":backend:webgpu"))
-            implementation(libs.kotlinx.browser)
+            implementation(libs.kotlin.browser)
+            implementation(libs.kotlin.web)
         }
     }
 }

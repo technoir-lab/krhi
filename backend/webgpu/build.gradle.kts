@@ -24,7 +24,8 @@ kotlin {
             implementation(libs.kotlinx.io.core)
         }
         webMain.dependencies {
-            implementation(libs.kotlinx.browser)
+            implementation(libs.kotlin.browser)
+            implementation(libs.kotlin.web)
         }
     }
 }

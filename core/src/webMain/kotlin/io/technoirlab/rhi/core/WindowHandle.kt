@@ -1,6 +1,6 @@
 package io.technoirlab.rhi.core
 
-import org.w3c.dom.HTMLCanvasElement
+import web.html.HTMLCanvasElement
 
 actual class WindowHandle(val canvas: HTMLCanvasElement) {
     actual val extent: Extent2D
