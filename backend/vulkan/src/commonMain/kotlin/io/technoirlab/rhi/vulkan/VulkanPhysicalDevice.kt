@@ -75,7 +75,7 @@ internal class VulkanPhysicalDevice(val device: PhysicalDevice) {
 
     context(memScope: MemScope)
     fun getSupportedExtensions(): Set<VulkanExtension> = device.enumerateDeviceExtensionProperties()
-        .map { VulkanExtension(it.extensionName.toKString()) }
+        .map { VulkanExtension(it.name) }
         .toSet()
 
     context(memScope: MemScope)
@@ -97,12 +97,12 @@ internal class VulkanPhysicalDevice(val device: PhysicalDevice) {
                 "minImageExtent=${surfaceCapabilities.minImageExtent.asString()}, " +
                 "maxImageExtent=${surfaceCapabilities.maxImageExtent.asString()}, " +
                 "maxImageArrayLayers=${surfaceCapabilities.maxImageArrayLayers}, " +
-                "currentExtent=${surfaceCapabilities.currentExtent.asString()}, " +
+                "currentExtent=${surfaceCapabilities.currentExtent?.asString()}, " +
                 "currentTransform=${surfaceCapabilities.currentTransform}"
         }
 
         val desiredTextureCount = if (config.tripleBuffering) 3u else 2u
-        val textureCount = if (surfaceCapabilities.maxImageCount > 0u) {
+        val textureCount = if (surfaceCapabilities.maxImageCount != null) {
             desiredTextureCount.coerceIn(surfaceCapabilities.minImageCount, surfaceCapabilities.maxImageCount)
         } else {
             desiredTextureCount.coerceAtLeast(surfaceCapabilities.minImageCount)
@@ -185,8 +185,8 @@ internal class VulkanPhysicalDevice(val device: PhysicalDevice) {
     context(memScope: MemScope)
     private fun isSupportedFormat(format: VkFormat, tiling: VkImageTiling, flags: VkFormatFeatureFlags): Boolean {
         val formatProperties = device.getFormatProperties(format)
-        return (tiling == VK_IMAGE_TILING_LINEAR && (formatProperties.formatProperties.linearTilingFeatures and flags) != 0u) ||
-            (tiling == VK_IMAGE_TILING_OPTIMAL && (formatProperties.formatProperties.optimalTilingFeatures and flags) != 0u)
+        return (tiling == VK_IMAGE_TILING_LINEAR && (formatProperties.linearTilingFeatures and flags) != 0u) ||
+            (tiling == VK_IMAGE_TILING_OPTIMAL && (formatProperties.optimalTilingFeatures and flags) != 0u)
     }
 
     private fun Pair<VkFormat, VkColorSpaceKHR>.asString(): String = "${vkFormatToString(first)} (${vkColorSpaceToString(second)})"

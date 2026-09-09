@@ -30,8 +30,8 @@ import io.technoirlab.volk.VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT
 import io.technoirlab.volk.VK_DYNAMIC_STATE_CULL_MODE
 import io.technoirlab.volk.VK_DYNAMIC_STATE_FRONT_FACE
 import io.technoirlab.volk.VK_DYNAMIC_STATE_PRIMITIVE_TOPOLOGY
-import io.technoirlab.volk.VK_DYNAMIC_STATE_SCISSOR_WITH_COUNT
-import io.technoirlab.volk.VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT
+import io.technoirlab.volk.VK_DYNAMIC_STATE_SCISSOR
+import io.technoirlab.volk.VK_DYNAMIC_STATE_VIEWPORT
 import io.technoirlab.volk.VK_FALSE
 import io.technoirlab.volk.VK_IMAGE_LAYOUT_UNDEFINED
 import io.technoirlab.volk.VK_IMAGE_TILING_OPTIMAL
@@ -55,9 +55,9 @@ import io.technoirlab.volk.VkVertexInputBindingDescription
 import io.technoirlab.vulkan.PhysicalDevice
 import io.technoirlab.vulkan.Queue
 import io.technoirlab.vulkan.command.CommandPool
+import io.technoirlab.vulkan.image.Image
 import io.technoirlab.vulkan.pipeline.PipelineCache
 import io.technoirlab.vulkan.presentation.Surface
-import io.technoirlab.vulkan.resource.Image
 import kotlinx.cinterop.MemScope
 import kotlinx.cinterop.addressOf
 import kotlinx.cinterop.alloc
@@ -237,8 +237,8 @@ internal class VulkanDevice(
             VK_DYNAMIC_STATE_CULL_MODE,
             VK_DYNAMIC_STATE_FRONT_FACE,
             VK_DYNAMIC_STATE_PRIMITIVE_TOPOLOGY,
-            VK_DYNAMIC_STATE_SCISSOR_WITH_COUNT,
-            VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT,
+            VK_DYNAMIC_STATE_SCISSOR,
+            VK_DYNAMIC_STATE_VIEWPORT,
         )
 
         val ranges = pushConstants?.let {
@@ -275,6 +275,10 @@ internal class VulkanDevice(
             },
             inputAssemblyState = {
                 topology = primitiveType.toVkPrimitiveTopology()
+            },
+            viewportState = {
+                viewportCount = 1u
+                scissorCount = 1u
             },
             rasterizationState = {
                 cullMode = rasterState.cullMode.toVkCullMode()

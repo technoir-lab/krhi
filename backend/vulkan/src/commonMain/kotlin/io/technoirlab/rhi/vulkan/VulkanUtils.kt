@@ -81,7 +81,6 @@ import io.technoirlab.volk.VkBlendOp
 import io.technoirlab.volk.VkColorSpaceKHR
 import io.technoirlab.volk.VkCompareOp
 import io.technoirlab.volk.VkCullModeFlags
-import io.technoirlab.volk.VkExtent2D
 import io.technoirlab.volk.VkFormat
 import io.technoirlab.volk.VkFrontFace
 import io.technoirlab.volk.VkIndexType
@@ -94,6 +93,7 @@ import io.technoirlab.volk.VkSurfaceTransformFlagBitsKHR
 import io.technoirlab.volk.string_VkColorSpaceKHR
 import io.technoirlab.volk.string_VkPresentModeKHR
 import io.technoirlab.volk.string_VkSurfaceTransformFlagBitsKHR
+import io.technoirlab.vulkan.Extent2D
 import kotlinx.cinterop.toKString
 
 internal inline fun vkPresentModeToString(presentMode: VkPresentModeKHR): String =
@@ -105,7 +105,7 @@ internal inline fun vkColorSpaceToString(colorSpace: VkColorSpaceKHR): String =
 internal inline fun vkSurfaceTransformFlagBitsToString(transform: VkSurfaceTransformFlagBitsKHR): String =
     string_VkSurfaceTransformFlagBitsKHR(transform)!!.toKString().removePrefix("VK_SURFACE_TRANSFORM_")
 
-internal inline fun VkExtent2D.asString(): String = "${width}x$height"
+internal inline fun Extent2D.asString(): String = "${width}x$height"
 
 internal inline fun versionToString(version: UInt): String =
     "${VK_VERSION_MAJOR(version)}.${VK_VERSION_MINOR(version)}.${VK_VERSION_PATCH(version)}"
