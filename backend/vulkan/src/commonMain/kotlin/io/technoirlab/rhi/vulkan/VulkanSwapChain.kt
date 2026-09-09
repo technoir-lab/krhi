@@ -21,13 +21,12 @@ import io.technoirlab.volk.VK_SUBOPTIMAL_KHR
 import io.technoirlab.volk.VK_SUCCESS
 import io.technoirlab.volk.VK_TRUE
 import io.technoirlab.volk.VkCommandBufferSubmitInfo
-import io.technoirlab.volk.VkExtent2D
 import io.technoirlab.volk.VkSemaphoreSubmitInfo
-import io.technoirlab.volk.VkSurfaceCapabilitiesKHR
 import io.technoirlab.vulkan.Device
 import io.technoirlab.vulkan.command.CommandBuffer
 import io.technoirlab.vulkan.command.CommandPool
 import io.technoirlab.vulkan.presentation.Surface
+import io.technoirlab.vulkan.presentation.SurfaceCapabilities
 import io.technoirlab.vulkan.presentation.Swapchain
 import io.technoirlab.vulkan.sync.Fence
 import io.technoirlab.vulkan.sync.Semaphore
@@ -36,6 +35,7 @@ import kotlinx.cinterop.alloc
 import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.ptr
 import kotlin.time.Duration.Companion.seconds
+import io.technoirlab.vulkan.Extent2D as VkExtent2D
 
 @Suppress("LongParameterList")
 internal class VulkanSwapChain(
@@ -237,9 +237,10 @@ internal class VulkanSwapChain(
             VulkanTextureState(texture, submitSemaphore = device.createSemaphore())
         }
 
-    private fun chooseTextureExtent(surfaceCapabilities: VkSurfaceCapabilitiesKHR): Extent2D =
-        if (surfaceCapabilities.currentExtent.width != UInt.MAX_VALUE) {
-            surfaceCapabilities.currentExtent.toExtent2D()
+    private fun chooseTextureExtent(surfaceCapabilities: SurfaceCapabilities): Extent2D {
+        val currentExtent = surfaceCapabilities.currentExtent
+        return if (currentExtent != null) {
+            currentExtent.toExtent2D()
         } else {
             val windowExtent = window.extent
             Extent2D(
@@ -247,6 +248,7 @@ internal class VulkanSwapChain(
                 height = windowExtent.height.coerceIn(surfaceCapabilities.minImageExtent.height, surfaceCapabilities.maxImageExtent.height),
             )
         }
+    }
 
     private fun VkExtent2D.toExtent2D(): Extent2D = Extent2D(width, height)
 

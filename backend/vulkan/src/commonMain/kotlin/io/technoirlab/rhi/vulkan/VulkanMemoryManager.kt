@@ -3,14 +3,13 @@ package io.technoirlab.rhi.vulkan
 import io.technoirlab.volk.VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT
 import io.technoirlab.volk.VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT
 import io.technoirlab.volk.VkMemoryPropertyFlags
-import io.technoirlab.volk.VkPhysicalDeviceMemoryProperties
+import io.technoirlab.vulkan.memory.MemoryProperties
 import kotlinx.cinterop.MemScope
-import kotlinx.cinterop.get
 import io.technoirlab.vulkan.Device as VkDevice
 import io.technoirlab.vulkan.PhysicalDevice as VkPhysicalDevice
+import io.technoirlab.vulkan.image.Image as VkImage
+import io.technoirlab.vulkan.memory.DeviceMemory as VkDeviceMemory
 import io.technoirlab.vulkan.resource.Buffer as VkBuffer
-import io.technoirlab.vulkan.resource.DeviceMemory as VkDeviceMemory
-import io.technoirlab.vulkan.resource.Image as VkImage
 
 internal class VulkanMemoryManager(
     private val device: VkDevice,
@@ -40,17 +39,13 @@ internal class VulkanMemoryManager(
         return memory
     }
 
-    private fun findMemoryType(
-        memoryProperties: VkPhysicalDeviceMemoryProperties,
-        memoryTypeBits: UInt,
-        flags: VkMemoryPropertyFlags,
-    ): UInt {
+    private fun findMemoryType(memoryProperties: MemoryProperties, memoryTypeBits: UInt, flags: VkMemoryPropertyFlags): UInt {
         var index = UInt.MAX_VALUE
-        for (i in 0u..<memoryProperties.memoryTypeCount) {
-            if ((memoryTypeBits and (1u shl i.toInt())) != 0u &&
-                (memoryProperties.memoryTypes[i.toInt()].propertyFlags and flags) == flags
+        for (i in memoryProperties.memoryTypes.indices) {
+            if ((memoryTypeBits and (1u shl i)) != 0u &&
+                (memoryProperties.memoryTypes[i].propertyFlags and flags) == flags
             ) {
-                index = i
+                index = i.toUInt()
                 break
             }
         }

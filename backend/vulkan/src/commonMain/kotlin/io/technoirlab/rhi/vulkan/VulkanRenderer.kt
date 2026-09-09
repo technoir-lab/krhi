@@ -33,6 +33,9 @@ import io.technoirlab.volk.VkAccessFlags2
 import io.technoirlab.volk.VkImageLayout
 import io.technoirlab.volk.VkPipelineStageFlags2
 import io.technoirlab.volk.VkRenderingAttachmentInfo
+import io.technoirlab.vulkan.Extent2D
+import io.technoirlab.vulkan.Rect2D
+import io.technoirlab.vulkan.Viewport
 import io.technoirlab.vulkan.Vulkan
 import io.technoirlab.vulkan.command.CommandBuffer
 import io.technoirlab.vulkan.presentation.Surface
@@ -42,7 +45,6 @@ import kotlinx.cinterop.allocArray
 import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.set
-import kotlinx.cinterop.toKString
 
 class VulkanRenderer : Renderer {
     private val logger = KotlinLogging.logger("VulkanRenderer")
@@ -175,20 +177,21 @@ class VulkanRenderer : Renderer {
 
         commandBuffer.bindPipeline(VK_PIPELINE_BIND_POINT_GRAPHICS, graphicsState.pipeline)
         commandBuffer.setPrimitiveTopology(graphicsState.primitiveType.toVkPrimitiveTopology())
-        commandBuffer.setViewportWithCount(count = 1u) {
-            x = 0.0f
-            y = 0.0f
-            minDepth = 0.0f
-            maxDepth = 1.0f
-            width = frameState.texture.extent.width.toFloat()
-            height = frameState.texture.extent.height.toFloat()
-        }
-        commandBuffer.setScissorWithCount(count = 1u) {
-            offset.x = 0
-            offset.y = 0
-            extent.width = frameState.texture.extent.width
-            extent.height = frameState.texture.extent.height
-        }
+        commandBuffer.setViewport(
+            Viewport(
+                x = 0.0f,
+                y = 0.0f,
+                width = frameState.texture.extent.width.toFloat(),
+                height = frameState.texture.extent.height.toFloat(),
+            ),
+        )
+        commandBuffer.setScissor(
+            Rect2D(
+                x = 0,
+                y = 0,
+                extent = Extent2D(frameState.texture.extent.width, frameState.texture.extent.height),
+            ),
+        )
         commandBuffer.setCullMode(graphicsState.rasterState.cullMode.toVkCullMode())
         commandBuffer.setFrontFace(graphicsState.rasterState.frontFace.toVkFrontFace())
 
@@ -254,12 +257,12 @@ class VulkanRenderer : Renderer {
 
     context(memScope: MemScope)
     private fun Vulkan.getSupportedExtensions(): Set<VulkanExtension> = enumerateInstanceExtensionProperties()
-        .map { VulkanExtension(it.extensionName.toKString()) }
+        .map { VulkanExtension(it.name) }
         .toSet()
 
     context(memScope: MemScope)
     private fun Vulkan.getSupportedLayers(): Set<VulkanLayer> = enumerateInstanceLayerProperties()
-        .map { VulkanLayer(it.layerName.toKString()) }
+        .map { VulkanLayer(it.name) }
         .toSet()
 
     context(memScope: MemScope)
