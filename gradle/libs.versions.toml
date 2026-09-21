@@ -1,6 +1,6 @@
 [versions]
 kotlin-logging = "8.0.4"
-kotlin-math = "1.7.0"
+kotlin-math = "1.8.0"
 kotlin-wrappers = "2026.9.1"
 kotlinx-io = "0.9.1"
 vulkan-kotlin = "1.4.357-2"
