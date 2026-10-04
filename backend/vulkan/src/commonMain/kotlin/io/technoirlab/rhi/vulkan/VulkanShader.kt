@@ -9,7 +9,6 @@ internal class VulkanShader(
     override val entryPoint: String,
     val shader: ShaderModule,
 ) : Shader {
-
     override fun close() {
         shader.close()
     }

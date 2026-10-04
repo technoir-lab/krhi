@@ -30,7 +30,6 @@ internal class VulkanInstance(
     private val enabledLayers: Set<VulkanLayer>,
     private val enabledExtensions: Set<VulkanExtension>,
 ) : AutoCloseable {
-
     private val logger = KotlinLogging.logger("VulkanRenderer")
     private val instance: Instance
     private val debugMessenger: DebugMessenger?

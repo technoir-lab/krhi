@@ -45,7 +45,6 @@ internal class VulkanSwapChain(
     private val window: WindowHandle,
     private val spec: VulkanSwapChainSpec,
 ) : RenderTarget {
-
     private val logger = KotlinLogging.logger("VulkanRenderer")
     private var swapChain: Swapchain
     private var textureStates: List<VulkanTextureState>
@@ -256,7 +255,6 @@ internal class VulkanSwapChain(
         val texture: VulkanTexture,
         val submitSemaphore: Semaphore,
     ) : AutoCloseable {
-
         override fun close() {
             submitSemaphore.close()
             texture.close()
@@ -269,7 +267,6 @@ internal class VulkanSwapChain(
         val acquireSemaphore: Semaphore,
         val submitFence: Fence,
     ) : AutoCloseable {
-
         override fun close() {
             acquireSemaphore.close()
             submitFence.close()

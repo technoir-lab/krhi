@@ -11,7 +11,6 @@ internal abstract class VulkanBuffer(
     private val memory: VkDeviceMemory,
     override val size: ULong,
 ) : Buffer {
-
     override fun updateData(source: Source, size: ULong, offset: ULong) = memScoped {
         memory.copyData(source, size, offset)
     }

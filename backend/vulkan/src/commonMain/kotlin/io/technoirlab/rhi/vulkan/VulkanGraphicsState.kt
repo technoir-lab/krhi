@@ -25,7 +25,6 @@ internal class VulkanGraphicsState(
     override val depthStencilState: DepthStencilState,
     override var pushConstants: ByteArray? = null,
 ) : GraphicsState {
-
     override fun close() {
         pipeline.close()
         pipelineLayout.close()

@@ -78,7 +78,6 @@ internal class VulkanDevice(
     deviceSpec: VulkanDeviceSpec,
     private val enabledExtensions: Set<VulkanExtension>,
 ) : Device {
-
     private val logger = KotlinLogging.logger("VulkanRenderer")
 
     val device: VkDevice
