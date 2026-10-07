@@ -34,7 +34,7 @@ jobs:
         uses: technoir-lab/actions/setup-kotlin-multiplatform@v1.0.0
 
       - name: Run checks
-        run: ./gradlew check
+        run: make check
 
   packages:
     name: Packages
@@ -114,7 +114,7 @@ jobs:
         uses: technoir-lab/actions/setup-kotlin-multiplatform@v1.0.0
 
       - name: Generate documentation
-        run: ./gradlew :dokkaGenerate
+        run: make docs
 
       - name: Upload documentation
         uses: actions/upload-pages-artifact@v5.0.0
