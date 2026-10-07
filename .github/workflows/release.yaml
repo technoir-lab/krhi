@@ -69,7 +69,6 @@ jobs:
           SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
         run: |
           ./gradlew publishAllPublicationsToGithubRepository \
-          --scan \
           -Ppublish.github.username=${{ secrets.GPR_DEPLOY_USER }} \
           -Ppublish.github.password=${{ secrets.GPR_DEPLOY_TOKEN }}
 
@@ -115,7 +114,7 @@ jobs:
         uses: technoir-lab/actions/setup-kotlin-multiplatform@v1.0.0
 
       - name: Generate documentation
-        run: ./gradlew :dokkaGenerate --scan
+        run: ./gradlew :dokkaGenerate
 
       - name: Upload documentation
         uses: actions/upload-pages-artifact@v5.0.0

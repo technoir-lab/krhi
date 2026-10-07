@@ -40,7 +40,7 @@ jobs:
         uses: technoir-lab/actions/setup-kotlin-multiplatform@v1.0.0
 
       - name: Build with Gradle
-        run: ./gradlew build --scan
+        run: ./gradlew build
 
       - name: Publish test report
         uses: mikepenz/action-junit-report@v6.5.0
