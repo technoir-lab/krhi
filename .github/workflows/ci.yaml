@@ -41,7 +41,7 @@ jobs:
         uses: technoir-lab/actions/setup-gcp-gradle-build-cache@v1.2.1
 
       - name: Set up KMP
-        uses: technoir-lab/actions/setup-kotlin-multiplatform@v1.0.0
+        uses: technoir-lab/actions/setup-kotlin-multiplatform@v1.2.1
 
       - name: Run checks
         run: make check
