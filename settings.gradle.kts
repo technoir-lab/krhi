@@ -1,11 +1,12 @@
 pluginManagement {
     repositories {
         gradlePluginPortal()
+        google()
         mavenCentral()
         mavenLocal()
     }
     plugins {
-        val conventionPluginsVersion = "v61"
+        val conventionPluginsVersion = "v62"
         id("io.technoirlab.conventions.kotlin-multiplatform-application") version conventionPluginsVersion
         id("io.technoirlab.conventions.kotlin-multiplatform-library") version conventionPluginsVersion
         id("io.technoirlab.conventions.root") version conventionPluginsVersion
