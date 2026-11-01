@@ -27,7 +27,7 @@ jobs:
           distribution: corretto
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v6.4.0
+        uses: gradle/actions/setup-gradle@v6.4.1
         with:
           cache-provider: basic
 
@@ -61,7 +61,7 @@ jobs:
           distribution: corretto
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v6.4.0
+        uses: gradle/actions/setup-gradle@v6.4.1
         with:
           cache-provider: basic
 
@@ -111,7 +111,7 @@ jobs:
           distribution: corretto
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v6.4.0
+        uses: gradle/actions/setup-gradle@v6.4.1
         with:
           cache-provider: basic
 
