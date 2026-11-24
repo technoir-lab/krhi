@@ -19,6 +19,7 @@ import io.technoirlab.vulkan.ApplicationInfo
 import io.technoirlab.vulkan.Instance
 import io.technoirlab.vulkan.Vulkan
 import io.technoirlab.vulkan.debug.DebugMessenger
+import io.technoirlab.vulkan.debug.createDebugMessenger
 import io.technoirlab.vulkan.presentation.Surface
 import kotlinx.cinterop.MemScope
 import kotlinx.cinterop.memScoped

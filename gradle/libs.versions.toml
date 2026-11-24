@@ -3,7 +3,7 @@ kotlin-logging = "8.0.4"
 kotlin-math = "1.8.0"
 kotlin-wrappers = "2026.11.2"
 kotlinx-io = "0.9.3"
-vulkan-kotlin = "1.4.357-2"
+vulkan-kotlin = "1.4.363-1"
 
 [libraries]
 kotlin-browser = { module = "org.jetbrains.kotlin-wrappers:kotlin-browser", version.ref = "kotlin-wrappers" }
