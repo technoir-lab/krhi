@@ -19,7 +19,7 @@ import io.technoirlab.volk.VkFormat
 import io.technoirlab.volk.VkFormatFeatureFlags
 import io.technoirlab.volk.VkImageTiling
 import io.technoirlab.volk.VkPresentModeKHR
-import io.technoirlab.vulkan.PhysicalDevice
+import io.technoirlab.vulkan.device.PhysicalDevice
 import io.technoirlab.vulkan.presentation.Surface
 import kotlinx.cinterop.MemScope
 import kotlinx.cinterop.memScoped

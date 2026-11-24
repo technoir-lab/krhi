@@ -5,11 +5,11 @@ import io.technoirlab.volk.VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT
 import io.technoirlab.volk.VkMemoryPropertyFlags
 import io.technoirlab.vulkan.memory.MemoryProperties
 import kotlinx.cinterop.MemScope
-import io.technoirlab.vulkan.Device as VkDevice
-import io.technoirlab.vulkan.PhysicalDevice as VkPhysicalDevice
+import io.technoirlab.vulkan.buffer.Buffer as VkBuffer
+import io.technoirlab.vulkan.device.Device as VkDevice
+import io.technoirlab.vulkan.device.PhysicalDevice as VkPhysicalDevice
 import io.technoirlab.vulkan.image.Image as VkImage
 import io.technoirlab.vulkan.memory.DeviceMemory as VkDeviceMemory
-import io.technoirlab.vulkan.resource.Buffer as VkBuffer
 
 internal class VulkanMemoryManager(
     private val device: VkDevice,

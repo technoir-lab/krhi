@@ -52,9 +52,9 @@ import io.technoirlab.volk.VkPushConstantRange
 import io.technoirlab.volk.VkStencilOpState
 import io.technoirlab.volk.VkVertexInputAttributeDescription
 import io.technoirlab.volk.VkVertexInputBindingDescription
-import io.technoirlab.vulkan.PhysicalDevice
-import io.technoirlab.vulkan.Queue
 import io.technoirlab.vulkan.command.CommandPool
+import io.technoirlab.vulkan.device.PhysicalDevice
+import io.technoirlab.vulkan.device.Queue
 import io.technoirlab.vulkan.image.Image
 import io.technoirlab.vulkan.pipeline.PipelineCache
 import io.technoirlab.vulkan.presentation.Surface
@@ -71,7 +71,7 @@ import kotlinx.cinterop.usePinned
 import kotlinx.cinterop.value
 import kotlinx.io.Source
 import kotlinx.io.readByteArray
-import io.technoirlab.vulkan.Device as VkDevice
+import io.technoirlab.vulkan.device.Device as VkDevice
 
 internal class VulkanDevice(
     private val physicalDevice: VulkanPhysicalDevice,
@@ -167,7 +167,7 @@ internal class VulkanDevice(
             size = bufferSize
         }
         val memory = memoryManager.allocateBufferMemory(buffer)
-        memory.copyData(source, buffer.size)
+        memory.copyFrom(source, buffer.size)
         VulkanVertexBuffer(buffer, memory, bufferSize, vertexCount, vertexLayout)
     }
 
@@ -178,7 +178,7 @@ internal class VulkanDevice(
             size = bufferSize
         }
         val memory = memoryManager.allocateBufferMemory(buffer)
-        memory.copyData(source, buffer.size)
+        memory.copyFrom(source, buffer.size)
         VulkanIndexBuffer(buffer, memory, bufferSize, indexCount, indexType)
     }
 
@@ -317,7 +317,7 @@ internal class VulkanDevice(
                 pAttachments = blendAttachmentState
             },
             cache = pipelineCache,
-        )
+        ) ?: error("Pipeline creation unexpectedly required compilation")
         return VulkanGraphicsState(
             vertexBuffer = vertexBuffer,
             indexBuffer = indexBuffer,

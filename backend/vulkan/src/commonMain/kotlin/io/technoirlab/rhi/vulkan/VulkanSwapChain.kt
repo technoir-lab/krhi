@@ -22,9 +22,9 @@ import io.technoirlab.volk.VK_SUCCESS
 import io.technoirlab.volk.VK_TRUE
 import io.technoirlab.volk.VkCommandBufferSubmitInfo
 import io.technoirlab.volk.VkSemaphoreSubmitInfo
-import io.technoirlab.vulkan.Device
 import io.technoirlab.vulkan.command.CommandBuffer
 import io.technoirlab.vulkan.command.CommandPool
+import io.technoirlab.vulkan.device.Device
 import io.technoirlab.vulkan.presentation.Surface
 import io.technoirlab.vulkan.presentation.SurfaceCapabilities
 import io.technoirlab.vulkan.presentation.Swapchain
@@ -88,7 +88,7 @@ internal class VulkanSwapChain(
     context(memScope: MemScope)
     fun reset() {
         frameInFlightState.forEach {
-            it.submitFence.wait(1.seconds)
+            check(it.submitFence.wait(1.seconds)) { "Timed out waiting for the submit fence" }
             it.commandBuffer.reset()
         }
     }

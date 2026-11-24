@@ -9,7 +9,7 @@ import io.technoirlab.volk.VK_IMAGE_VIEW_TYPE_2D
 import io.technoirlab.volk.VkFormat
 import io.technoirlab.volk.VkImageAspectFlags
 import io.technoirlab.volk.VkImageLayout
-import io.technoirlab.vulkan.Device
+import io.technoirlab.vulkan.device.Device
 import io.technoirlab.vulkan.image.Image
 import io.technoirlab.vulkan.image.ImageView
 import io.technoirlab.vulkan.memory.DeviceMemory

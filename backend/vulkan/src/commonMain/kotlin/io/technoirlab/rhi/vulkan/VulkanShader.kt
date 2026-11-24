@@ -2,7 +2,7 @@ package io.technoirlab.rhi.vulkan
 
 import io.technoirlab.rhi.core.Shader
 import io.technoirlab.rhi.core.ShaderType
-import io.technoirlab.vulkan.pipeline.ShaderModule
+import io.technoirlab.vulkan.shader.ShaderModule
 
 internal class VulkanShader(
     override val type: ShaderType,
