@@ -7,6 +7,24 @@
 // - Show declarations: true
 
 // Library unique name: <io.technoirlab.krhi:memory>
+final class io.technoirlab.rhi.memory/LinearAllocator { // io.technoirlab.rhi.memory/LinearAllocator|null[0]
+    constructor <init>(kotlin/Long) // io.technoirlab.rhi.memory/LinearAllocator.<init>|<init>(kotlin.Long){}[0]
+
+    final val capacity // io.technoirlab.rhi.memory/LinearAllocator.capacity|{}capacity[0]
+        final fun <get-capacity>(): kotlin/Long // io.technoirlab.rhi.memory/LinearAllocator.capacity.<get-capacity>|<get-capacity>(){}[0]
+
+    final var usedBytes // io.technoirlab.rhi.memory/LinearAllocator.usedBytes|{}usedBytes[0]
+        final fun <get-usedBytes>(): kotlin/Long // io.technoirlab.rhi.memory/LinearAllocator.usedBytes.<get-usedBytes>|<get-usedBytes>(){}[0]
+
+    final fun allocate(kotlin/Long, kotlin/Long = ...): kotlin/Long // io.technoirlab.rhi.memory/LinearAllocator.allocate|allocate(kotlin.Long;kotlin.Long){}[0]
+    final fun reset() // io.technoirlab.rhi.memory/LinearAllocator.reset|reset(){}[0]
+
+    final object Companion { // io.technoirlab.rhi.memory/LinearAllocator.Companion|null[0]
+        final const val NO_OFFSET // io.technoirlab.rhi.memory/LinearAllocator.Companion.NO_OFFSET|{}NO_OFFSET[0]
+            final fun <get-NO_OFFSET>(): kotlin/Long // io.technoirlab.rhi.memory/LinearAllocator.Companion.NO_OFFSET.<get-NO_OFFSET>|<get-NO_OFFSET>(){}[0]
+    }
+}
+
 final class io.technoirlab.rhi.memory/MutableMemorySpan : io.technoirlab.rhi.memory/MemorySpan { // io.technoirlab.rhi.memory/MutableMemorySpan|null[0]
     final fun fill(kotlin/Byte, kotlin/Int = ..., kotlin/Int = ...) // io.technoirlab.rhi.memory/MutableMemorySpan.fill|fill(kotlin.Byte;kotlin.Int;kotlin.Int){}[0]
     final fun setByte(kotlin/Int, kotlin/Byte) // io.technoirlab.rhi.memory/MutableMemorySpan.setByte|setByte(kotlin.Int;kotlin.Byte){}[0]
@@ -23,6 +41,37 @@ final class io.technoirlab.rhi.memory/MutableMemorySpan : io.technoirlab.rhi.mem
     final fun write(kotlin/IntArray, kotlin/Int = ..., kotlin/Int = ..., kotlin/Int = ...) // io.technoirlab.rhi.memory/MutableMemorySpan.write|write(kotlin.IntArray;kotlin.Int;kotlin.Int;kotlin.Int){}[0]
     final fun write(kotlin/LongArray, kotlin/Int = ..., kotlin/Int = ..., kotlin/Int = ...) // io.technoirlab.rhi.memory/MutableMemorySpan.write|write(kotlin.LongArray;kotlin.Int;kotlin.Int;kotlin.Int){}[0]
     final fun write(kotlin/ShortArray, kotlin/Int = ..., kotlin/Int = ..., kotlin/Int = ...) // io.technoirlab.rhi.memory/MutableMemorySpan.write|write(kotlin.ShortArray;kotlin.Int;kotlin.Int;kotlin.Int){}[0]
+}
+
+final class io.technoirlab.rhi.memory/TlsfAllocator { // io.technoirlab.rhi.memory/TlsfAllocator|null[0]
+    constructor <init>(kotlin/Long) // io.technoirlab.rhi.memory/TlsfAllocator.<init>|<init>(kotlin.Long){}[0]
+
+    final val capacity // io.technoirlab.rhi.memory/TlsfAllocator.capacity|{}capacity[0]
+        final fun <get-capacity>(): kotlin/Long // io.technoirlab.rhi.memory/TlsfAllocator.capacity.<get-capacity>|<get-capacity>(){}[0]
+
+    final var allocationCount // io.technoirlab.rhi.memory/TlsfAllocator.allocationCount|{}allocationCount[0]
+        final fun <get-allocationCount>(): kotlin/Int // io.technoirlab.rhi.memory/TlsfAllocator.allocationCount.<get-allocationCount>|<get-allocationCount>(){}[0]
+    final var usedBytes // io.technoirlab.rhi.memory/TlsfAllocator.usedBytes|{}usedBytes[0]
+        final fun <get-usedBytes>(): kotlin/Long // io.technoirlab.rhi.memory/TlsfAllocator.usedBytes.<get-usedBytes>|<get-usedBytes>(){}[0]
+
+    final fun allocate(kotlin/Long, kotlin/Long = ...): io.technoirlab.rhi.memory/OffsetAllocation // io.technoirlab.rhi.memory/TlsfAllocator.allocate|allocate(kotlin.Long;kotlin.Long){}[0]
+    final fun free(io.technoirlab.rhi.memory/OffsetAllocation) // io.technoirlab.rhi.memory/TlsfAllocator.free|free(io.technoirlab.rhi.memory.OffsetAllocation){}[0]
+    final fun offsetOf(io.technoirlab.rhi.memory/OffsetAllocation): kotlin/Long // io.technoirlab.rhi.memory/TlsfAllocator.offsetOf|offsetOf(io.technoirlab.rhi.memory.OffsetAllocation){}[0]
+    final fun sizeOf(io.technoirlab.rhi.memory/OffsetAllocation): kotlin/Long // io.technoirlab.rhi.memory/TlsfAllocator.sizeOf|sizeOf(io.technoirlab.rhi.memory.OffsetAllocation){}[0]
+}
+
+final value class io.technoirlab.rhi.memory/OffsetAllocation { // io.technoirlab.rhi.memory/OffsetAllocation|null[0]
+    final val isNone // io.technoirlab.rhi.memory/OffsetAllocation.isNone|{}isNone[0]
+        final fun <get-isNone>(): kotlin/Boolean // io.technoirlab.rhi.memory/OffsetAllocation.isNone.<get-isNone>|<get-isNone>(){}[0]
+
+    final fun equals(kotlin/Any?): kotlin/Boolean // io.technoirlab.rhi.memory/OffsetAllocation.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // io.technoirlab.rhi.memory/OffsetAllocation.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // io.technoirlab.rhi.memory/OffsetAllocation.toString|toString(){}[0]
+
+    final object Companion { // io.technoirlab.rhi.memory/OffsetAllocation.Companion|null[0]
+        final val None // io.technoirlab.rhi.memory/OffsetAllocation.Companion.None|{}None[0]
+            final fun <get-None>(): io.technoirlab.rhi.memory/OffsetAllocation // io.technoirlab.rhi.memory/OffsetAllocation.Companion.None.<get-None>|<get-None>(){}[0]
+    }
 }
 
 open class io.technoirlab.rhi.memory/MemorySpan { // io.technoirlab.rhi.memory/MemorySpan|null[0]
