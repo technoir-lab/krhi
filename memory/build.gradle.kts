@@ -33,5 +33,8 @@ kotlin {
         commonTest.dependencies {
             implementation(kotlin("test"))
         }
+        webMain.dependencies {
+            api(libs.kotlin.js)
+        }
     }
 }
