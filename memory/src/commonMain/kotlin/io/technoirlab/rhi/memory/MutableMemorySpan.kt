@@ -1,5 +1,7 @@
 package io.technoirlab.rhi.memory
 
+import io.technoirlab.rhi.memory.internal.bytesAfter
+
 /**
  * A view of contiguous host memory that can also be written.
  *

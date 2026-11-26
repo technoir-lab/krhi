@@ -1,7 +1,9 @@
 @file:OptIn(ExperimentalWasmJsInterop::class, UnsafeWasmMemoryApi::class)
 
-package io.technoirlab.rhi.memory
+package io.technoirlab.rhi.memory.internal
 
+import io.technoirlab.rhi.memory.MemorySpan
+import io.technoirlab.rhi.memory.MutableMemorySpan
 import js.buffer.ArrayBuffer
 import kotlin.js.ExperimentalWasmJsInterop
 import kotlin.math.min
