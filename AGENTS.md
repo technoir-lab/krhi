@@ -4,6 +4,7 @@
 
 - `core/`: backend-neutral RHI API.
 - `backend/mock/`, `backend/vulkan/`, `backend/webgpu/`: backend implementations.
+- `memory/`: host memory spans and offset allocators, independent of the other modules.
 - `samples/common/`: shared sample utilities.
 - `samples/triangle/`: cross-platform triangle example application.
 - `src/commonMain/kotlin`: shared code.

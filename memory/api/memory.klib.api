@@ -1,0 +1,177 @@
+// Klib ABI Dump
+// Targets: [androidNativeArm64, iosArm64, iosSimulatorArm64, js, linuxArm64, linuxX64, macosArm64, mingwX64, wasmJs]
+// Alias: native => [androidNativeArm64, iosArm64, iosSimulatorArm64, linuxArm64, linuxX64, macosArm64, mingwX64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <io.technoirlab.krhi:memory>
+final class io.technoirlab.rhi.memory/LinearAllocator { // io.technoirlab.rhi.memory/LinearAllocator|null[0]
+    constructor <init>(kotlin/Long) // io.technoirlab.rhi.memory/LinearAllocator.<init>|<init>(kotlin.Long){}[0]
+
+    final val capacity // io.technoirlab.rhi.memory/LinearAllocator.capacity|{}capacity[0]
+        final fun <get-capacity>(): kotlin/Long // io.technoirlab.rhi.memory/LinearAllocator.capacity.<get-capacity>|<get-capacity>(){}[0]
+
+    final var usedBytes // io.technoirlab.rhi.memory/LinearAllocator.usedBytes|{}usedBytes[0]
+        final fun <get-usedBytes>(): kotlin/Long // io.technoirlab.rhi.memory/LinearAllocator.usedBytes.<get-usedBytes>|<get-usedBytes>(){}[0]
+
+    final fun allocate(kotlin/Long, kotlin/Long = ...): kotlin/Long // io.technoirlab.rhi.memory/LinearAllocator.allocate|allocate(kotlin.Long;kotlin.Long){}[0]
+    final fun reset() // io.technoirlab.rhi.memory/LinearAllocator.reset|reset(){}[0]
+
+    final object Companion { // io.technoirlab.rhi.memory/LinearAllocator.Companion|null[0]
+        final const val NO_OFFSET // io.technoirlab.rhi.memory/LinearAllocator.Companion.NO_OFFSET|{}NO_OFFSET[0]
+            final fun <get-NO_OFFSET>(): kotlin/Long // io.technoirlab.rhi.memory/LinearAllocator.Companion.NO_OFFSET.<get-NO_OFFSET>|<get-NO_OFFSET>(){}[0]
+    }
+}
+
+final class io.technoirlab.rhi.memory/MutableMemorySpan : io.technoirlab.rhi.memory/MemorySpan { // io.technoirlab.rhi.memory/MutableMemorySpan|null[0]
+    final fun fill(kotlin/Byte, kotlin/Int = ..., kotlin/Int = ...) // io.technoirlab.rhi.memory/MutableMemorySpan.fill|fill(kotlin.Byte;kotlin.Int;kotlin.Int){}[0]
+    final fun setByte(kotlin/Int, kotlin/Byte) // io.technoirlab.rhi.memory/MutableMemorySpan.setByte|setByte(kotlin.Int;kotlin.Byte){}[0]
+    final fun setDouble(kotlin/Int, kotlin/Double) // io.technoirlab.rhi.memory/MutableMemorySpan.setDouble|setDouble(kotlin.Int;kotlin.Double){}[0]
+    final fun setFloat(kotlin/Int, kotlin/Float) // io.technoirlab.rhi.memory/MutableMemorySpan.setFloat|setFloat(kotlin.Int;kotlin.Float){}[0]
+    final fun setInt(kotlin/Int, kotlin/Int) // io.technoirlab.rhi.memory/MutableMemorySpan.setInt|setInt(kotlin.Int;kotlin.Int){}[0]
+    final fun setLong(kotlin/Int, kotlin/Long) // io.technoirlab.rhi.memory/MutableMemorySpan.setLong|setLong(kotlin.Int;kotlin.Long){}[0]
+    final fun setShort(kotlin/Int, kotlin/Short) // io.technoirlab.rhi.memory/MutableMemorySpan.setShort|setShort(kotlin.Int;kotlin.Short){}[0]
+    final fun slice(kotlin/Int, kotlin/Int): io.technoirlab.rhi.memory/MutableMemorySpan // io.technoirlab.rhi.memory/MutableMemorySpan.slice|slice(kotlin.Int;kotlin.Int){}[0]
+    final fun toString(): kotlin/String // io.technoirlab.rhi.memory/MutableMemorySpan.toString|toString(){}[0]
+    final fun write(kotlin/ByteArray, kotlin/Int = ..., kotlin/Int = ..., kotlin/Int = ...) // io.technoirlab.rhi.memory/MutableMemorySpan.write|write(kotlin.ByteArray;kotlin.Int;kotlin.Int;kotlin.Int){}[0]
+    final fun write(kotlin/DoubleArray, kotlin/Int = ..., kotlin/Int = ..., kotlin/Int = ...) // io.technoirlab.rhi.memory/MutableMemorySpan.write|write(kotlin.DoubleArray;kotlin.Int;kotlin.Int;kotlin.Int){}[0]
+    final fun write(kotlin/FloatArray, kotlin/Int = ..., kotlin/Int = ..., kotlin/Int = ...) // io.technoirlab.rhi.memory/MutableMemorySpan.write|write(kotlin.FloatArray;kotlin.Int;kotlin.Int;kotlin.Int){}[0]
+    final fun write(kotlin/IntArray, kotlin/Int = ..., kotlin/Int = ..., kotlin/Int = ...) // io.technoirlab.rhi.memory/MutableMemorySpan.write|write(kotlin.IntArray;kotlin.Int;kotlin.Int;kotlin.Int){}[0]
+    final fun write(kotlin/LongArray, kotlin/Int = ..., kotlin/Int = ..., kotlin/Int = ...) // io.technoirlab.rhi.memory/MutableMemorySpan.write|write(kotlin.LongArray;kotlin.Int;kotlin.Int;kotlin.Int){}[0]
+    final fun write(kotlin/ShortArray, kotlin/Int = ..., kotlin/Int = ..., kotlin/Int = ...) // io.technoirlab.rhi.memory/MutableMemorySpan.write|write(kotlin.ShortArray;kotlin.Int;kotlin.Int;kotlin.Int){}[0]
+}
+
+final class io.technoirlab.rhi.memory/TlsfAllocator { // io.technoirlab.rhi.memory/TlsfAllocator|null[0]
+    constructor <init>(kotlin/Long) // io.technoirlab.rhi.memory/TlsfAllocator.<init>|<init>(kotlin.Long){}[0]
+
+    final val capacity // io.technoirlab.rhi.memory/TlsfAllocator.capacity|{}capacity[0]
+        final fun <get-capacity>(): kotlin/Long // io.technoirlab.rhi.memory/TlsfAllocator.capacity.<get-capacity>|<get-capacity>(){}[0]
+
+    final var allocationCount // io.technoirlab.rhi.memory/TlsfAllocator.allocationCount|{}allocationCount[0]
+        final fun <get-allocationCount>(): kotlin/Int // io.technoirlab.rhi.memory/TlsfAllocator.allocationCount.<get-allocationCount>|<get-allocationCount>(){}[0]
+    final var usedBytes // io.technoirlab.rhi.memory/TlsfAllocator.usedBytes|{}usedBytes[0]
+        final fun <get-usedBytes>(): kotlin/Long // io.technoirlab.rhi.memory/TlsfAllocator.usedBytes.<get-usedBytes>|<get-usedBytes>(){}[0]
+
+    final fun allocate(kotlin/Long, kotlin/Long = ...): io.technoirlab.rhi.memory/OffsetAllocation // io.technoirlab.rhi.memory/TlsfAllocator.allocate|allocate(kotlin.Long;kotlin.Long){}[0]
+    final fun free(io.technoirlab.rhi.memory/OffsetAllocation) // io.technoirlab.rhi.memory/TlsfAllocator.free|free(io.technoirlab.rhi.memory.OffsetAllocation){}[0]
+    final fun offsetOf(io.technoirlab.rhi.memory/OffsetAllocation): kotlin/Long // io.technoirlab.rhi.memory/TlsfAllocator.offsetOf|offsetOf(io.technoirlab.rhi.memory.OffsetAllocation){}[0]
+    final fun sizeOf(io.technoirlab.rhi.memory/OffsetAllocation): kotlin/Long // io.technoirlab.rhi.memory/TlsfAllocator.sizeOf|sizeOf(io.technoirlab.rhi.memory.OffsetAllocation){}[0]
+}
+
+final value class io.technoirlab.rhi.memory/OffsetAllocation { // io.technoirlab.rhi.memory/OffsetAllocation|null[0]
+    final val isNone // io.technoirlab.rhi.memory/OffsetAllocation.isNone|{}isNone[0]
+        final fun <get-isNone>(): kotlin/Boolean // io.technoirlab.rhi.memory/OffsetAllocation.isNone.<get-isNone>|<get-isNone>(){}[0]
+
+    final fun equals(kotlin/Any?): kotlin/Boolean // io.technoirlab.rhi.memory/OffsetAllocation.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // io.technoirlab.rhi.memory/OffsetAllocation.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // io.technoirlab.rhi.memory/OffsetAllocation.toString|toString(){}[0]
+
+    final object Companion { // io.technoirlab.rhi.memory/OffsetAllocation.Companion|null[0]
+        final val None // io.technoirlab.rhi.memory/OffsetAllocation.Companion.None|{}None[0]
+            final fun <get-None>(): io.technoirlab.rhi.memory/OffsetAllocation // io.technoirlab.rhi.memory/OffsetAllocation.Companion.None.<get-None>|<get-None>(){}[0]
+    }
+}
+
+open class io.technoirlab.rhi.memory/MemorySpan { // io.technoirlab.rhi.memory/MemorySpan|null[0]
+    final val size // io.technoirlab.rhi.memory/MemorySpan.size|{}size[0]
+        final fun <get-size>(): kotlin/Int // io.technoirlab.rhi.memory/MemorySpan.size.<get-size>|<get-size>(){}[0]
+
+    final fun copyTo(io.technoirlab.rhi.memory/MutableMemorySpan, kotlin/Int = ..., kotlin/Int = ..., kotlin/Int = ...) // io.technoirlab.rhi.memory/MemorySpan.copyTo|copyTo(io.technoirlab.rhi.memory.MutableMemorySpan;kotlin.Int;kotlin.Int;kotlin.Int){}[0]
+    final fun getByte(kotlin/Int): kotlin/Byte // io.technoirlab.rhi.memory/MemorySpan.getByte|getByte(kotlin.Int){}[0]
+    final fun getDouble(kotlin/Int): kotlin/Double // io.technoirlab.rhi.memory/MemorySpan.getDouble|getDouble(kotlin.Int){}[0]
+    final fun getFloat(kotlin/Int): kotlin/Float // io.technoirlab.rhi.memory/MemorySpan.getFloat|getFloat(kotlin.Int){}[0]
+    final fun getInt(kotlin/Int): kotlin/Int // io.technoirlab.rhi.memory/MemorySpan.getInt|getInt(kotlin.Int){}[0]
+    final fun getLong(kotlin/Int): kotlin/Long // io.technoirlab.rhi.memory/MemorySpan.getLong|getLong(kotlin.Int){}[0]
+    final fun getShort(kotlin/Int): kotlin/Short // io.technoirlab.rhi.memory/MemorySpan.getShort|getShort(kotlin.Int){}[0]
+    final fun read(kotlin/ByteArray, kotlin/Int = ..., kotlin/Int = ..., kotlin/Int = ...) // io.technoirlab.rhi.memory/MemorySpan.read|read(kotlin.ByteArray;kotlin.Int;kotlin.Int;kotlin.Int){}[0]
+    final fun read(kotlin/DoubleArray, kotlin/Int = ..., kotlin/Int = ..., kotlin/Int = ...) // io.technoirlab.rhi.memory/MemorySpan.read|read(kotlin.DoubleArray;kotlin.Int;kotlin.Int;kotlin.Int){}[0]
+    final fun read(kotlin/FloatArray, kotlin/Int = ..., kotlin/Int = ..., kotlin/Int = ...) // io.technoirlab.rhi.memory/MemorySpan.read|read(kotlin.FloatArray;kotlin.Int;kotlin.Int;kotlin.Int){}[0]
+    final fun read(kotlin/IntArray, kotlin/Int = ..., kotlin/Int = ..., kotlin/Int = ...) // io.technoirlab.rhi.memory/MemorySpan.read|read(kotlin.IntArray;kotlin.Int;kotlin.Int;kotlin.Int){}[0]
+    final fun read(kotlin/LongArray, kotlin/Int = ..., kotlin/Int = ..., kotlin/Int = ...) // io.technoirlab.rhi.memory/MemorySpan.read|read(kotlin.LongArray;kotlin.Int;kotlin.Int;kotlin.Int){}[0]
+    final fun read(kotlin/ShortArray, kotlin/Int = ..., kotlin/Int = ..., kotlin/Int = ...) // io.technoirlab.rhi.memory/MemorySpan.read|read(kotlin.ShortArray;kotlin.Int;kotlin.Int;kotlin.Int){}[0]
+    open fun slice(kotlin/Int, kotlin/Int = ...): io.technoirlab.rhi.memory/MemorySpan // io.technoirlab.rhi.memory/MemorySpan.slice|slice(kotlin.Int;kotlin.Int){}[0]
+    open fun toString(): kotlin/String // io.technoirlab.rhi.memory/MemorySpan.toString|toString(){}[0]
+
+    // Targets: [native]
+    final val pointer // io.technoirlab.rhi.memory/MemorySpan.pointer|{}pointer[0]
+        final fun <get-pointer>(): kotlinx.cinterop/CPointer<kotlinx.cinterop/ByteVarOf<kotlin/Byte>>? // io.technoirlab.rhi.memory/MemorySpan.pointer.<get-pointer>|<get-pointer>(){}[0]
+
+    // Targets: [js, wasmJs]
+    final fun asUint8Array(): js.typedarrays/Uint8Array<js.buffer/ArrayBuffer> // io.technoirlab.rhi.memory/MemorySpan.asUint8Array|asUint8Array(){}[0]
+}
+
+final fun io.technoirlab.rhi.memory/checkArrayRange(kotlin/Int, kotlin/Int, kotlin/Int) // io.technoirlab.rhi.memory/checkArrayRange|checkArrayRange(kotlin.Int;kotlin.Int;kotlin.Int){}[0]
+final fun io.technoirlab.rhi.memory/checkArraySpan(kotlin/Int, kotlin/Int, kotlin/Int, kotlin/Int): kotlin/Int // io.technoirlab.rhi.memory/checkArraySpan|checkArraySpan(kotlin.Int;kotlin.Int;kotlin.Int;kotlin.Int){}[0]
+final inline fun (io.technoirlab.rhi.memory/MemorySpan).io.technoirlab.rhi.memory/getUByte(kotlin/Int): kotlin/UByte // io.technoirlab.rhi.memory/getUByte|getUByte@io.technoirlab.rhi.memory.MemorySpan(kotlin.Int){}[0]
+final inline fun (io.technoirlab.rhi.memory/MemorySpan).io.technoirlab.rhi.memory/getUInt(kotlin/Int): kotlin/UInt // io.technoirlab.rhi.memory/getUInt|getUInt@io.technoirlab.rhi.memory.MemorySpan(kotlin.Int){}[0]
+final inline fun (io.technoirlab.rhi.memory/MemorySpan).io.technoirlab.rhi.memory/getULong(kotlin/Int): kotlin/ULong // io.technoirlab.rhi.memory/getULong|getULong@io.technoirlab.rhi.memory.MemorySpan(kotlin.Int){}[0]
+final inline fun (io.technoirlab.rhi.memory/MemorySpan).io.technoirlab.rhi.memory/getUShort(kotlin/Int): kotlin/UShort // io.technoirlab.rhi.memory/getUShort|getUShort@io.technoirlab.rhi.memory.MemorySpan(kotlin.Int){}[0]
+final inline fun (io.technoirlab.rhi.memory/MemorySpan).io.technoirlab.rhi.memory/read(kotlin/UByteArray, kotlin/Int = ..., kotlin/Int = ..., kotlin/Int = ...) // io.technoirlab.rhi.memory/read|read@io.technoirlab.rhi.memory.MemorySpan(kotlin.UByteArray;kotlin.Int;kotlin.Int;kotlin.Int){}[0]
+final inline fun (io.technoirlab.rhi.memory/MemorySpan).io.technoirlab.rhi.memory/read(kotlin/UIntArray, kotlin/Int = ..., kotlin/Int = ..., kotlin/Int = ...) // io.technoirlab.rhi.memory/read|read@io.technoirlab.rhi.memory.MemorySpan(kotlin.UIntArray;kotlin.Int;kotlin.Int;kotlin.Int){}[0]
+final inline fun (io.technoirlab.rhi.memory/MemorySpan).io.technoirlab.rhi.memory/read(kotlin/ULongArray, kotlin/Int = ..., kotlin/Int = ..., kotlin/Int = ...) // io.technoirlab.rhi.memory/read|read@io.technoirlab.rhi.memory.MemorySpan(kotlin.ULongArray;kotlin.Int;kotlin.Int;kotlin.Int){}[0]
+final inline fun (io.technoirlab.rhi.memory/MemorySpan).io.technoirlab.rhi.memory/read(kotlin/UShortArray, kotlin/Int = ..., kotlin/Int = ..., kotlin/Int = ...) // io.technoirlab.rhi.memory/read|read@io.technoirlab.rhi.memory.MemorySpan(kotlin.UShortArray;kotlin.Int;kotlin.Int;kotlin.Int){}[0]
+final inline fun (io.technoirlab.rhi.memory/MutableMemorySpan).io.technoirlab.rhi.memory/setUByte(kotlin/Int, kotlin/UByte) // io.technoirlab.rhi.memory/setUByte|setUByte@io.technoirlab.rhi.memory.MutableMemorySpan(kotlin.Int;kotlin.UByte){}[0]
+final inline fun (io.technoirlab.rhi.memory/MutableMemorySpan).io.technoirlab.rhi.memory/setUInt(kotlin/Int, kotlin/UInt) // io.technoirlab.rhi.memory/setUInt|setUInt@io.technoirlab.rhi.memory.MutableMemorySpan(kotlin.Int;kotlin.UInt){}[0]
+final inline fun (io.technoirlab.rhi.memory/MutableMemorySpan).io.technoirlab.rhi.memory/setULong(kotlin/Int, kotlin/ULong) // io.technoirlab.rhi.memory/setULong|setULong@io.technoirlab.rhi.memory.MutableMemorySpan(kotlin.Int;kotlin.ULong){}[0]
+final inline fun (io.technoirlab.rhi.memory/MutableMemorySpan).io.technoirlab.rhi.memory/setUShort(kotlin/Int, kotlin/UShort) // io.technoirlab.rhi.memory/setUShort|setUShort@io.technoirlab.rhi.memory.MutableMemorySpan(kotlin.Int;kotlin.UShort){}[0]
+final inline fun (io.technoirlab.rhi.memory/MutableMemorySpan).io.technoirlab.rhi.memory/write(kotlin/UByteArray, kotlin/Int = ..., kotlin/Int = ..., kotlin/Int = ...) // io.technoirlab.rhi.memory/write|write@io.technoirlab.rhi.memory.MutableMemorySpan(kotlin.UByteArray;kotlin.Int;kotlin.Int;kotlin.Int){}[0]
+final inline fun (io.technoirlab.rhi.memory/MutableMemorySpan).io.technoirlab.rhi.memory/write(kotlin/UIntArray, kotlin/Int = ..., kotlin/Int = ..., kotlin/Int = ...) // io.technoirlab.rhi.memory/write|write@io.technoirlab.rhi.memory.MutableMemorySpan(kotlin.UIntArray;kotlin.Int;kotlin.Int;kotlin.Int){}[0]
+final inline fun (io.technoirlab.rhi.memory/MutableMemorySpan).io.technoirlab.rhi.memory/write(kotlin/ULongArray, kotlin/Int = ..., kotlin/Int = ..., kotlin/Int = ...) // io.technoirlab.rhi.memory/write|write@io.technoirlab.rhi.memory.MutableMemorySpan(kotlin.ULongArray;kotlin.Int;kotlin.Int;kotlin.Int){}[0]
+final inline fun (io.technoirlab.rhi.memory/MutableMemorySpan).io.technoirlab.rhi.memory/write(kotlin/UShortArray, kotlin/Int = ..., kotlin/Int = ..., kotlin/Int = ...) // io.technoirlab.rhi.memory/write|write@io.technoirlab.rhi.memory.MutableMemorySpan(kotlin.UShortArray;kotlin.Int;kotlin.Int;kotlin.Int){}[0]
+final inline fun <#A: kotlin/Any?> (kotlin/ByteArray).io.technoirlab.rhi.memory/useSpan(kotlin/Int = ..., kotlin/Int = ..., kotlin/Function1<io.technoirlab.rhi.memory/MemorySpan, #A>): #A // io.technoirlab.rhi.memory/useSpan|useSpan@kotlin.ByteArray(kotlin.Int;kotlin.Int;kotlin.Function1<io.technoirlab.rhi.memory.MemorySpan,0:0>){0§<kotlin.Any?>}[0]
+final inline fun <#A: kotlin/Any?> (kotlin/DoubleArray).io.technoirlab.rhi.memory/useSpan(kotlin/Int = ..., kotlin/Int = ..., kotlin/Function1<io.technoirlab.rhi.memory/MemorySpan, #A>): #A // io.technoirlab.rhi.memory/useSpan|useSpan@kotlin.DoubleArray(kotlin.Int;kotlin.Int;kotlin.Function1<io.technoirlab.rhi.memory.MemorySpan,0:0>){0§<kotlin.Any?>}[0]
+final inline fun <#A: kotlin/Any?> (kotlin/FloatArray).io.technoirlab.rhi.memory/useSpan(kotlin/Int = ..., kotlin/Int = ..., kotlin/Function1<io.technoirlab.rhi.memory/MemorySpan, #A>): #A // io.technoirlab.rhi.memory/useSpan|useSpan@kotlin.FloatArray(kotlin.Int;kotlin.Int;kotlin.Function1<io.technoirlab.rhi.memory.MemorySpan,0:0>){0§<kotlin.Any?>}[0]
+final inline fun <#A: kotlin/Any?> (kotlin/IntArray).io.technoirlab.rhi.memory/useSpan(kotlin/Int = ..., kotlin/Int = ..., kotlin/Function1<io.technoirlab.rhi.memory/MemorySpan, #A>): #A // io.technoirlab.rhi.memory/useSpan|useSpan@kotlin.IntArray(kotlin.Int;kotlin.Int;kotlin.Function1<io.technoirlab.rhi.memory.MemorySpan,0:0>){0§<kotlin.Any?>}[0]
+final inline fun <#A: kotlin/Any?> (kotlin/LongArray).io.technoirlab.rhi.memory/useSpan(kotlin/Int = ..., kotlin/Int = ..., kotlin/Function1<io.technoirlab.rhi.memory/MemorySpan, #A>): #A // io.technoirlab.rhi.memory/useSpan|useSpan@kotlin.LongArray(kotlin.Int;kotlin.Int;kotlin.Function1<io.technoirlab.rhi.memory.MemorySpan,0:0>){0§<kotlin.Any?>}[0]
+final inline fun <#A: kotlin/Any?> (kotlin/ShortArray).io.technoirlab.rhi.memory/useSpan(kotlin/Int = ..., kotlin/Int = ..., kotlin/Function1<io.technoirlab.rhi.memory/MemorySpan, #A>): #A // io.technoirlab.rhi.memory/useSpan|useSpan@kotlin.ShortArray(kotlin.Int;kotlin.Int;kotlin.Function1<io.technoirlab.rhi.memory.MemorySpan,0:0>){0§<kotlin.Any?>}[0]
+final inline fun <#A: kotlin/Any?> (kotlin/UByteArray).io.technoirlab.rhi.memory/useSpan(kotlin/Int = ..., kotlin/Int = ..., kotlin/Function1<io.technoirlab.rhi.memory/MemorySpan, #A>): #A // io.technoirlab.rhi.memory/useSpan|useSpan@kotlin.UByteArray(kotlin.Int;kotlin.Int;kotlin.Function1<io.technoirlab.rhi.memory.MemorySpan,0:0>){0§<kotlin.Any?>}[0]
+final inline fun <#A: kotlin/Any?> (kotlin/UIntArray).io.technoirlab.rhi.memory/useSpan(kotlin/Int = ..., kotlin/Int = ..., kotlin/Function1<io.technoirlab.rhi.memory/MemorySpan, #A>): #A // io.technoirlab.rhi.memory/useSpan|useSpan@kotlin.UIntArray(kotlin.Int;kotlin.Int;kotlin.Function1<io.technoirlab.rhi.memory.MemorySpan,0:0>){0§<kotlin.Any?>}[0]
+final inline fun <#A: kotlin/Any?> (kotlin/ULongArray).io.technoirlab.rhi.memory/useSpan(kotlin/Int = ..., kotlin/Int = ..., kotlin/Function1<io.technoirlab.rhi.memory/MemorySpan, #A>): #A // io.technoirlab.rhi.memory/useSpan|useSpan@kotlin.ULongArray(kotlin.Int;kotlin.Int;kotlin.Function1<io.technoirlab.rhi.memory.MemorySpan,0:0>){0§<kotlin.Any?>}[0]
+final inline fun <#A: kotlin/Any?> (kotlin/UShortArray).io.technoirlab.rhi.memory/useSpan(kotlin/Int = ..., kotlin/Int = ..., kotlin/Function1<io.technoirlab.rhi.memory/MemorySpan, #A>): #A // io.technoirlab.rhi.memory/useSpan|useSpan@kotlin.UShortArray(kotlin.Int;kotlin.Int;kotlin.Function1<io.technoirlab.rhi.memory.MemorySpan,0:0>){0§<kotlin.Any?>}[0]
+final inline fun <#A: kotlin/Any?> io.technoirlab.rhi.memory/withArraySpan(kotlin/ByteArray, kotlin/Int, kotlin/Int, kotlin/Function1<io.technoirlab.rhi.memory/MemorySpan, #A>): #A // io.technoirlab.rhi.memory/withArraySpan|withArraySpan(kotlin.ByteArray;kotlin.Int;kotlin.Int;kotlin.Function1<io.technoirlab.rhi.memory.MemorySpan,0:0>){0§<kotlin.Any?>}[0]
+final inline fun <#A: kotlin/Any?> io.technoirlab.rhi.memory/withArraySpan(kotlin/DoubleArray, kotlin/Int, kotlin/Int, kotlin/Function1<io.technoirlab.rhi.memory/MemorySpan, #A>): #A // io.technoirlab.rhi.memory/withArraySpan|withArraySpan(kotlin.DoubleArray;kotlin.Int;kotlin.Int;kotlin.Function1<io.technoirlab.rhi.memory.MemorySpan,0:0>){0§<kotlin.Any?>}[0]
+final inline fun <#A: kotlin/Any?> io.technoirlab.rhi.memory/withArraySpan(kotlin/FloatArray, kotlin/Int, kotlin/Int, kotlin/Function1<io.technoirlab.rhi.memory/MemorySpan, #A>): #A // io.technoirlab.rhi.memory/withArraySpan|withArraySpan(kotlin.FloatArray;kotlin.Int;kotlin.Int;kotlin.Function1<io.technoirlab.rhi.memory.MemorySpan,0:0>){0§<kotlin.Any?>}[0]
+final inline fun <#A: kotlin/Any?> io.technoirlab.rhi.memory/withArraySpan(kotlin/IntArray, kotlin/Int, kotlin/Int, kotlin/Function1<io.technoirlab.rhi.memory/MemorySpan, #A>): #A // io.technoirlab.rhi.memory/withArraySpan|withArraySpan(kotlin.IntArray;kotlin.Int;kotlin.Int;kotlin.Function1<io.technoirlab.rhi.memory.MemorySpan,0:0>){0§<kotlin.Any?>}[0]
+final inline fun <#A: kotlin/Any?> io.technoirlab.rhi.memory/withArraySpan(kotlin/LongArray, kotlin/Int, kotlin/Int, kotlin/Function1<io.technoirlab.rhi.memory/MemorySpan, #A>): #A // io.technoirlab.rhi.memory/withArraySpan|withArraySpan(kotlin.LongArray;kotlin.Int;kotlin.Int;kotlin.Function1<io.technoirlab.rhi.memory.MemorySpan,0:0>){0§<kotlin.Any?>}[0]
+final inline fun <#A: kotlin/Any?> io.technoirlab.rhi.memory/withArraySpan(kotlin/ShortArray, kotlin/Int, kotlin/Int, kotlin/Function1<io.technoirlab.rhi.memory/MemorySpan, #A>): #A // io.technoirlab.rhi.memory/withArraySpan|withArraySpan(kotlin.ShortArray;kotlin.Int;kotlin.Int;kotlin.Function1<io.technoirlab.rhi.memory.MemorySpan,0:0>){0§<kotlin.Any?>}[0]
+
+// Targets: [native]
+final fun io.technoirlab.rhi.memory/MemorySpan(kotlinx.cinterop/CPointer<*>?, kotlin/Long): io.technoirlab.rhi.memory/MemorySpan // io.technoirlab.rhi.memory/MemorySpan|MemorySpan(kotlinx.cinterop.CPointer<*>?;kotlin.Long){}[0]
+
+// Targets: [native]
+final fun io.technoirlab.rhi.memory/MutableMemorySpan(kotlinx.cinterop/CPointer<*>?, kotlin/Long): io.technoirlab.rhi.memory/MutableMemorySpan // io.technoirlab.rhi.memory/MutableMemorySpan|MutableMemorySpan(kotlinx.cinterop.CPointer<*>?;kotlin.Long){}[0]
+
+// Targets: [native]
+final inline fun <#A: kotlin/Any, #B: kotlin/Any?> (#A).io.technoirlab.rhi.memory/usePinnedOnce(kotlin/Function1<kotlinx.cinterop/Pinned<#A>, #B>): #B // io.technoirlab.rhi.memory/usePinnedOnce|usePinnedOnce@0:0(kotlin.Function1<kotlinx.cinterop.Pinned<0:0>,0:1>){0§<kotlin.Any>;1§<kotlin.Any?>}[0]
+
+// Targets: [js, wasmJs]
+final fun io.technoirlab.rhi.memory/MemorySpan(js.buffer/ArrayBuffer, kotlin/Int = ..., kotlin/Int = ...): io.technoirlab.rhi.memory/MemorySpan // io.technoirlab.rhi.memory/MemorySpan|MemorySpan(js.buffer.ArrayBuffer;kotlin.Int;kotlin.Int){}[0]
+
+// Targets: [js, wasmJs]
+final fun io.technoirlab.rhi.memory/MemorySpan(js.buffer/ArrayBufferView<js.buffer/ArrayBuffer>): io.technoirlab.rhi.memory/MemorySpan // io.technoirlab.rhi.memory/MemorySpan|MemorySpan(js.buffer.ArrayBufferView<js.buffer.ArrayBuffer>){}[0]
+
+// Targets: [js, wasmJs]
+final fun io.technoirlab.rhi.memory/MutableMemorySpan(js.buffer/ArrayBuffer, kotlin/Int = ..., kotlin/Int = ...): io.technoirlab.rhi.memory/MutableMemorySpan // io.technoirlab.rhi.memory/MutableMemorySpan|MutableMemorySpan(js.buffer.ArrayBuffer;kotlin.Int;kotlin.Int){}[0]
+
+// Targets: [js, wasmJs]
+final fun io.technoirlab.rhi.memory/MutableMemorySpan(js.buffer/ArrayBufferView<js.buffer/ArrayBuffer>): io.technoirlab.rhi.memory/MutableMemorySpan // io.technoirlab.rhi.memory/MutableMemorySpan|MutableMemorySpan(js.buffer.ArrayBufferView<js.buffer.ArrayBuffer>){}[0]
+
+// Targets: [js, wasmJs]
+final fun io.technoirlab.rhi.memory/arraySpan(kotlin/ByteArray, kotlin/Int, kotlin/Int): io.technoirlab.rhi.memory/MemorySpan // io.technoirlab.rhi.memory/arraySpan|arraySpan(kotlin.ByteArray;kotlin.Int;kotlin.Int){}[0]
+
+// Targets: [js, wasmJs]
+final fun io.technoirlab.rhi.memory/arraySpan(kotlin/DoubleArray, kotlin/Int, kotlin/Int): io.technoirlab.rhi.memory/MemorySpan // io.technoirlab.rhi.memory/arraySpan|arraySpan(kotlin.DoubleArray;kotlin.Int;kotlin.Int){}[0]
+
+// Targets: [js, wasmJs]
+final fun io.technoirlab.rhi.memory/arraySpan(kotlin/FloatArray, kotlin/Int, kotlin/Int): io.technoirlab.rhi.memory/MemorySpan // io.technoirlab.rhi.memory/arraySpan|arraySpan(kotlin.FloatArray;kotlin.Int;kotlin.Int){}[0]
+
+// Targets: [js, wasmJs]
+final fun io.technoirlab.rhi.memory/arraySpan(kotlin/IntArray, kotlin/Int, kotlin/Int): io.technoirlab.rhi.memory/MemorySpan // io.technoirlab.rhi.memory/arraySpan|arraySpan(kotlin.IntArray;kotlin.Int;kotlin.Int){}[0]
+
+// Targets: [js, wasmJs]
+final fun io.technoirlab.rhi.memory/arraySpan(kotlin/LongArray, kotlin/Int, kotlin/Int): io.technoirlab.rhi.memory/MemorySpan // io.technoirlab.rhi.memory/arraySpan|arraySpan(kotlin.LongArray;kotlin.Int;kotlin.Int){}[0]
+
+// Targets: [js, wasmJs]
+final fun io.technoirlab.rhi.memory/arraySpan(kotlin/ShortArray, kotlin/Int, kotlin/Int): io.technoirlab.rhi.memory/MemorySpan // io.technoirlab.rhi.memory/arraySpan|arraySpan(kotlin.ShortArray;kotlin.Int;kotlin.Int){}[0]
