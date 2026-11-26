@@ -1,5 +1,15 @@
 package io.technoirlab.rhi.memory
 
+import io.technoirlab.rhi.memory.internal.addressable
+import io.technoirlab.rhi.memory.internal.byteLengthOf
+import io.technoirlab.rhi.memory.internal.byteOffsetOf
+import io.technoirlab.rhi.memory.internal.bytesAfter
+import io.technoirlab.rhi.memory.internal.checkArrayTransfer
+import io.technoirlab.rhi.memory.internal.checkBufferRange
+import io.technoirlab.rhi.memory.internal.checkSpanRange
+import io.technoirlab.rhi.memory.internal.fillBytes
+import io.technoirlab.rhi.memory.internal.throwElementOutOfBounds
+import io.technoirlab.rhi.memory.internal.writeArray
 import js.buffer.ArrayBuffer
 import js.buffer.ArrayBufferView
 import js.buffer.DataView
@@ -111,33 +121,3 @@ fun MutableMemorySpan(
  */
 fun MutableMemorySpan(view: ArrayBufferView<ArrayBuffer>): MutableMemorySpan =
     MutableMemorySpan(view.buffer, addressable(byteOffsetOf(view), "The offset of the view"), addressable(byteLengthOf(view), "The view"))
-
-/**
- * Copies an array range that the caller has checked and that is not empty into the span.
- */
-internal expect fun MutableMemorySpan.writeArray(offset: Int, source: ByteArray, startIndex: Int, endIndex: Int)
-
-/**
- * Copies an array range that the caller has checked and that is not empty into the span as little-endian values.
- */
-internal expect fun MutableMemorySpan.writeArray(offset: Int, source: ShortArray, startIndex: Int, endIndex: Int)
-
-/**
- * Copies an array range that the caller has checked and that is not empty into the span as little-endian values.
- */
-internal expect fun MutableMemorySpan.writeArray(offset: Int, source: IntArray, startIndex: Int, endIndex: Int)
-
-/**
- * Copies an array range that the caller has checked and that is not empty into the span as little-endian values.
- */
-internal expect fun MutableMemorySpan.writeArray(offset: Int, source: LongArray, startIndex: Int, endIndex: Int)
-
-/**
- * Copies an array range that the caller has checked and that is not empty into the span as little-endian values.
- */
-internal expect fun MutableMemorySpan.writeArray(offset: Int, source: FloatArray, startIndex: Int, endIndex: Int)
-
-/**
- * Copies an array range that the caller has checked and that is not empty into the span as little-endian values.
- */
-internal expect fun MutableMemorySpan.writeArray(offset: Int, source: DoubleArray, startIndex: Int, endIndex: Int)

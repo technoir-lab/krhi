@@ -1,4 +1,4 @@
-package io.technoirlab.rhi.memory
+package io.technoirlab.rhi.memory.allocator
 
 /**
  * A bump allocator of ranges in the abstract space `[0, capacity)`, with no individual free. It touches no memory.

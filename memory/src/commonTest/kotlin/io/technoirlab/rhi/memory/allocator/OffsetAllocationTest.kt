@@ -1,4 +1,4 @@
-package io.technoirlab.rhi.memory
+package io.technoirlab.rhi.memory.allocator
 
 import kotlin.test.Test
 import kotlin.test.assertEquals

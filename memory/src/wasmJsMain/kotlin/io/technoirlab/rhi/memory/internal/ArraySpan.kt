@@ -1,5 +1,7 @@
-package io.technoirlab.rhi.memory
+package io.technoirlab.rhi.memory.internal
 
+import io.technoirlab.rhi.memory.MemorySpan
+import io.technoirlab.rhi.memory.MutableMemorySpan
 import js.buffer.ArrayBuffer
 
 // A Kotlin array on Wasm is invisible to JS, so the span is a copy of the range in a temporary buffer.

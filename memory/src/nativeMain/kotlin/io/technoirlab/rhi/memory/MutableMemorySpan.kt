@@ -2,6 +2,14 @@
 
 package io.technoirlab.rhi.memory
 
+import io.technoirlab.rhi.memory.internal.checkArrayTransfer
+import io.technoirlab.rhi.memory.internal.checkPointer
+import io.technoirlab.rhi.memory.internal.checkSpanRange
+import io.technoirlab.rhi.memory.internal.moveBytes
+import io.technoirlab.rhi.memory.internal.storeByte
+import io.technoirlab.rhi.memory.internal.storeInt
+import io.technoirlab.rhi.memory.internal.storeLong
+import io.technoirlab.rhi.memory.internal.storeShort
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.NativePtr

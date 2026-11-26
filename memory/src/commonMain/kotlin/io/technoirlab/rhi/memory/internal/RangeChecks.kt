@@ -1,4 +1,6 @@
-package io.technoirlab.rhi.memory
+package io.technoirlab.rhi.memory.internal
+
+import io.technoirlab.rhi.memory.MemorySpan
 
 /**
  * Returns the number of bytes from [offset] to the end of the span.

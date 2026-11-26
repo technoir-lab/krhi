@@ -2,16 +2,23 @@
 
 package io.technoirlab.rhi.memory
 
+import io.technoirlab.rhi.memory.internal.checkArrayTransfer
+import io.technoirlab.rhi.memory.internal.checkPointer
+import io.technoirlab.rhi.memory.internal.checkSpanRange
+import io.technoirlab.rhi.memory.internal.loadByte
+import io.technoirlab.rhi.memory.internal.loadInt
+import io.technoirlab.rhi.memory.internal.loadLong
+import io.technoirlab.rhi.memory.internal.loadShort
+import io.technoirlab.rhi.memory.internal.moveBytes
+import io.technoirlab.rhi.memory.internal.throwElementOutOfBounds
 import kotlinx.cinterop.ByteVar
 import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.NativePtr
 import kotlinx.cinterop.addressOf
-import kotlinx.cinterop.convert
 import kotlinx.cinterop.interpretCPointer
 import kotlinx.cinterop.rawValue
 import kotlinx.cinterop.usePinned
-import platform.posix.memmove
 
 actual open class MemorySpan internal constructor(
     internal val address: NativePtr,
@@ -143,20 +150,3 @@ actual open class MemorySpan internal constructor(
  * not zero.
  */
 fun MemorySpan(pointer: CPointer<*>?, size: Long): MemorySpan = MemorySpan(pointer.rawValue, checkPointer(pointer, size))
-
-/**
- * Copies [byteCount] bytes, which may overlap, from [source] to [destination].
- */
-internal fun moveBytes(destination: CPointer<*>?, source: CPointer<*>?, byteCount: Int) {
-    memmove(destination, source, byteCount.convert())
-}
-
-/**
- * Checks the arguments of a span over [size] bytes at [pointer], and returns the size as the [Int] that a span keeps.
- */
-internal fun checkPointer(pointer: CPointer<*>?, size: Long): Int {
-    require(size >= 0) { "Size must not be negative: $size" }
-    require(size <= Int.MAX_VALUE) { "A span holds at most ${Int.MAX_VALUE} bytes: $size" }
-    require(pointer != null || size == 0L) { "Pointer must not be null for a span of $size bytes" }
-    return size.toInt()
-}

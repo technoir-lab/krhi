@@ -1,4 +1,4 @@
-package io.technoirlab.rhi.memory
+package io.technoirlab.rhi.memory.allocator
 
 /**
  * A two-level segregated fit allocator of ranges in the abstract space `[0, capacity)`. It touches no memory.
